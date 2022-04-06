@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles"
 import { theme } from "./styles/theme";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
+import Main from "./pages/Main";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Main />} />
           </Route>
         </Routes>
       </Router>

@@ -1,5 +1,6 @@
 export const theme = {
   palette: {
+    yellow: "#FAC710",
     orange: "#ffaf1b"
   },
   content_bg_color: "#1D1D1E",
@@ -9,7 +10,8 @@ export const theme = {
   border_color: "#8b8b8b",
   fonts: {
     logo: 'LeferiPoint-BlackObliqueA',
-    categories: `'Lato', sans-serif`,
+    menu: `'Lato', sans-serif`,
+    category: `'Abril Fatface', cursive`,
     base: 'KoPubDotumMedium'
   }
 }

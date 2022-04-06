@@ -33,8 +33,13 @@ const Title = styled.div`
 `;
 
 const Categories = styled.div`
+  ${({theme}) => {
+    return css`
+      font-family: ${theme.fonts.menu};
+    `;
+  }};
+
   color: lightgray;
-  font-family: 'Lato', sans-serif;
   cursor: pointer;
   &:hover { opacity: 0.8; };
 `;
@@ -42,7 +47,7 @@ const Categories = styled.div`
 const Color = styled.span`
   ${({theme}) => {
     return css`
-      color: ${theme.palette.orange};
+      color: ${theme.palette.yellow};
     `;
   }};
 `;
