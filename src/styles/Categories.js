@@ -13,10 +13,13 @@ export const Category = styled.div`
   cursor: pointer;
   position: relative;
 
+  :not(:hover) {
+    opacity: 0.85;
+  }
   &:hover {
     transform: scale(1.02);
-    opacity: 0.8;
   }
+  
 `;
 
 export const Image = styled.img`
