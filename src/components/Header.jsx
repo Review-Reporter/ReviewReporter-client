@@ -1,12 +1,10 @@
 import styled, { css } from 'styled-components';
 
 const HeaderWrapper = styled.div`
-  ${({theme}) => {
-    return css`
-      border-bottom: 1px solid ${theme.border_color};
-    `
-  }};
-  
+  border-bottom: 1px solid ${props => 
+    props.theme.border_color
+  };
+
   display: flex;
   justify-content: center;
   width: 100%;
@@ -25,34 +23,21 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.div`
-  ${({theme}) => {
-    return css`
-      font-family: ${theme.fonts.logo};
-    `
-  }};
+  font-family: ${props => props.theme.fonts.logo};
   font-size: 1.7rem;
   padding-top: 0.45rem;
   cursor: pointer;
 `;
 
 const Categories = styled.div`
-  ${({theme}) => {
-    return css`
-      font-family: ${theme.fonts.menu};
-    `;
-  }};
-
+  font-family: ${props => props.theme.fonts.menu};
   color: lightgray;
   cursor: pointer;
   &:hover { opacity: 0.8; };
 `;
 
 const Color = styled.span`
-  ${({theme}) => {
-    return css`
-      color: ${theme.palette.yellow};
-    `;
-  }};
+  color: ${props => props.theme.palette.yellow};
 `;
 
 const Header = () => {

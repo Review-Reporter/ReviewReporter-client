@@ -12,12 +12,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-    font-family: 'KoPubDotumMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff');
-    font-weight: normal;
+    font-family: 'NanumBarunGothic';
     font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
   }
-
+  
   * {
     margin: 0;
     box-sizing: border-box;
@@ -35,6 +36,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
     color: ${ props => props.theme.text_color };
     font-size: 1.125rem;
+    font-family: ${ props => props.theme.fonts.base };
 
     @media screen and (max-width: 1023px) {
       width: 100%;

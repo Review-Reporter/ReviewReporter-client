@@ -8,10 +8,12 @@ export const theme = {
   primary_color: "#C3A474",
   sub_color: "#ECDEC8",
   border_color: "#8b8b8b",
+  light_bg_color: "#3f3f3f",
+  dark_bg_color: "#1d1d1e",
   fonts: {
     logo: 'LeferiPoint-BlackObliqueA',
     menu: `'Lato', sans-serif`,
     category: `'Abril Fatface', cursive`,
-    base: 'KoPubDotumMedium'
+    base: `NanumBarunGothic`
   }
 }

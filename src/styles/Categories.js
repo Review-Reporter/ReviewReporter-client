@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
 
-export const CategoriesContainer = styled.div`
+export const CategoryContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Category = styled.div`
@@ -19,11 +17,10 @@ export const Category = styled.div`
   &:hover {
     transform: scale(1.02);
   }
-  
 `;
 
 export const Image = styled.img`
-  width: 100%;
+  width: 400px;
 `;
 
 export const Text = styled.div`
