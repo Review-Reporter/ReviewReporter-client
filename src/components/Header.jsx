@@ -10,6 +10,8 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  position: fixed;
+  z-index: 10;
 `;
 
 const HeaderContainer = styled.div`
@@ -19,6 +21,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   padding: 0 2rem;
   height: 4rem;
+  background: rgb(36, 36, 36, 0.85);
 `;
 
 const Title = styled.div`
@@ -53,11 +56,20 @@ const Color = styled.span`
 `;
 
 const Header = () => {
+  const scrollToTop = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <Title><Color>re</Color>view <Color>re</Color>porter</Title>
-        <Categories>Categories</Categories>
+        <Title
+          onClick={scrollToTop}
+        >
+          <Color>re</Color>view <Color>re</Color>porter</Title>
+        <Categories
+          onClick={scrollToTop}
+        >Categories</Categories>
       </HeaderContainer>
     </HeaderWrapper>
   )
