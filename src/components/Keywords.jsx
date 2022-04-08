@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 import toteBag from '../assets/images/toteBag.png';
 import backpack from '../assets/images/backpack.png';
-import PageContainer from './PageContainer';
 import Rank from '../components/Rank';
 import {
+  PageContainer,
   Title,
   ContentsContainer,
   Category,
@@ -11,17 +12,19 @@ import {
   Image,
   KeywordContainer,
   Keyword,
-  AlignWrapper,
   RankContainer,
 } from '../styles/Keywords';
 
 const keywords = ["keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword"];
 
-const Keywords = ({ category }) => {
-  if (!category) return null;
+const Keywords = ({}, ref) => {
+  const { category } = useSelector(state => state.data);
 
+  if (!category) return null;
   return (
-    <PageContainer>
+    <PageContainer
+      ref={ref}
+    >
       <Title>주요 언급 키워드</Title>
       <ContentsContainer>
         <Category>{category}</Category>
@@ -34,7 +37,7 @@ const Keywords = ({ category }) => {
         <KeywordContainer></KeywordContainer>
         <RankContainer>
           {keywords.map((keyword, i) => (
-           <Rank rank={i+1} keyword={keyword} />
+           <Rank key={i} rank={i+1} keyword={keyword} />
           ))}
         </RankContainer>
       </ContentsContainer>
@@ -42,4 +45,4 @@ const Keywords = ({ category }) => {
   )
 };
 
-export default Keywords;
+export default forwardRef(Keywords);

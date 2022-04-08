@@ -6,6 +6,14 @@ const RankContainer = styled.div`
   align-items: center;
   margin: 1rem;
   margin-top: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.7;
+  }
 `;
 
 const NumBackground = styled.div`
@@ -19,7 +27,7 @@ const NumBackground = styled.div`
 const Num = styled.div`
   line-height: 2.4rem;
   text-align: center;
-  margin-left: -0.1rem;
+  margin-left: -0.03rem;
   font-weight: bold;
 `;
 

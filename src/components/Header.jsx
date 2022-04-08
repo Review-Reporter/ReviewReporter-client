@@ -1,4 +1,6 @@
-import styled, { css } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setActivePage } from '../modules/data';
+import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   border-bottom: 1px solid ${props => 
@@ -41,19 +43,27 @@ const Color = styled.span`
 `;
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const scrollToTop = () => {
-    window.scroll({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <Title
-          onClick={scrollToTop}
+          onClick={() => {
+            dispatch(setActivePage('categories'));
+            scrollToTop();
+          }}
         >
           <Color>re</Color>view <Color>re</Color>porter</Title>
         <Categories
-          onClick={scrollToTop}
+          onClick={() => {
+            dispatch(setActivePage('categories'));
+            scrollToTop();
+          }}
         >Categories</Categories>
       </HeaderContainer>
     </HeaderWrapper>
