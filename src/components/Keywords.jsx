@@ -1,8 +1,9 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import toteBag from '../assets/images/toteBag.png';
 import backpack from '../assets/images/backpack.png';
-import Rank from '../components/Rank';
+import WordCloud from './WordCloud';
+import Rank from './Rank';
 import {
   PageContainer,
   Title,
@@ -11,14 +12,71 @@ import {
   ImageWrapper,
   Image,
   KeywordContainer,
-  Keyword,
+  WordCloudContainer,
   RankContainer,
 } from '../styles/Keywords';
 
-const keywords = ["keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword", "keyword"];
+
+const toteBagData = {
+  "tote1": 10, 
+  "tote2": 5, 
+  "tote3": 4, 
+  "tote4": 14, 
+  "tote5": 6, 
+  "tote6": 13, 
+  "tote7": 8, 
+  "tote8": 15, 
+  "tote9": 21, 
+  "tote10": 1
+};
+
+const backpackData = {
+  "backpack1": 10, 
+  "backpack2": 5, 
+  "backpack3": 4, 
+  "backpack4": 14, 
+  "backpack5": 6, 
+  "backpack6": 13, 
+  "backpack7": 8, 
+  "backpack8": 15, 
+  "backpack9": 21, 
+  "backpack10": 1
+};
+
 
 const Keywords = ({}, ref) => {
+  const [data, setData] = useState(null);
+  const [rank, setRank] = useState(null);
   const { category } = useSelector(state => state.data);
+
+  useEffect(() => {
+    let selectedData = (category === 'Backpack') ? backpackData : toteBagData;
+
+    setData(selectedData);
+    calculateRank(selectedData);
+  }, [category]);
+
+  const calculateRank = (data) => {
+    let keys = Object.keys(data);
+    let values = Object.values(data);
+    let tmp = null;
+
+    for (let i=0; i<keys.length-1; i++) {
+      for (let j=i+1; j<keys.length; j++) {
+        if (values[i] < values[j]) {
+          tmp = values[i];
+          values[i] = values[j];
+          values[j] = tmp;
+
+          tmp = keys[i];
+          keys[i] = keys[j];
+          keys[j] = tmp;
+        }
+      }
+    }
+
+    setRank(keys);
+  }
 
   if (!category) return null;
   return (
@@ -26,20 +84,28 @@ const Keywords = ({}, ref) => {
       ref={ref}
     >
       <Title>주요 언급 키워드</Title>
+      <Category>{category}</Category>
       <ContentsContainer>
-        <Category>{category}</Category>
+        <KeywordContainer>
         <ImageWrapper>
           <Image 
             value={category} 
             src={category === 'Backpack' ? backpack : toteBag}
           />
         </ImageWrapper>
-        <KeywordContainer></KeywordContainer>
+        {data && <WordCloudContainer>
+          <WordCloud 
+            data={data}
+            category={category}
+          />
+        </WordCloudContainer>}
+        </KeywordContainer>
+        {rank &&
         <RankContainer>
-          {keywords.map((keyword, i) => (
-           <Rank key={i} rank={i+1} keyword={keyword} />
+          {rank.map((keyword, i) => (
+           <Rank key={i} rank={i} keyword={keyword} />
           ))}
-        </RankContainer>
+        </RankContainer>}
       </ContentsContainer>
     </PageContainer>
   )

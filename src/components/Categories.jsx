@@ -11,6 +11,7 @@ import {
   Text
 } from '../styles/Categories';
 
+
 const Categories = () => {
   const dispatch = useDispatch();
 

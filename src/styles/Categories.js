@@ -13,12 +13,13 @@ export const PageContainer = styled.div`
 `;
 
 export const CategoryContainer = styled.div`
+  margin-top: 3rem;
   display: flex;
 `;
 
 export const Category = styled.div`
   display: inline-block;
-  width: 400px;
+  max-width: 400px;
   margin: 2rem 1rem;
   cursor: pointer;
   position: relative;
