@@ -16,7 +16,7 @@ const Main = () => {
     else if (active_page === 'keywords'){
       dispatch(setKeyword(""));
       dispatch(setActivePage(""));
-      window.scrollTo({ top: keywordRef.current.offsetTop - 35, behavior: 'smooth' });
+      window.scrollTo({ top: keywordRef.current.offsetTop - 10, behavior: 'smooth' });
     }
   }, [active_page, dispatch]);
 
@@ -26,12 +26,10 @@ const Main = () => {
         category={category}
       />
       {category &&
-      <>
       <Keywords 
         ref={keywordRef}
         category={category}
       />
-      </>
       }
     </div>
   )
