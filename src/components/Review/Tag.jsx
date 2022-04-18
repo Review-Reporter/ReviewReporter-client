@@ -25,7 +25,7 @@ const Tag = ({ keyword, setReviewKeyword, children }) => {
   return (
     <TagWrapper
       onClick={() => setReviewKeyword(children)}
-      color={keyword === children ? true : undefined}
+      color={keyword === children ? "true" : undefined}
     >{children}</TagWrapper>
   )
 };

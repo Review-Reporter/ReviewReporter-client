@@ -29,7 +29,6 @@ const NumBackground = styled.div`
 const Num = styled.div`
   line-height: 2.4rem;
   text-align: center;
-  margin-left: -0.03rem;
   font-weight: bold;
 `;
 

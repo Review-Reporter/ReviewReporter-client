@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import Fold from './Fold';
 
@@ -36,14 +36,23 @@ const Text = styled.div`
 
 const ReviewContents = ({ vendor_name , date, product_name, contents }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFoldVisible, setIsFoldVisible] = useState(false);
+  const text = useRef(null);
+
+  useEffect(() => {
+    if (text.current.scrollHeight > 56) setIsFoldVisible(true);
+    else setIsFoldVisible(false);
+  }, [contents]);
   
   return (
     <ReviewContentsContainer>
       <Meta>{vendor_name} · {date} · {product_name}</Meta>
       <Text
+        ref={text}
         isOpen={isOpen}
       >{contents}</Text>
-      <Fold 
+      <Fold
+        isVisible={isFoldVisible}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />

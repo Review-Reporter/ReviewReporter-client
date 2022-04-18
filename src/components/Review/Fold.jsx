@@ -31,7 +31,8 @@ export const ArrowUp = styled(BsChevronUp)`
 `;
 
 
-const Fold = ({ isOpen, setIsOpen }) => {
+const Fold = ({ isVisible, isOpen, setIsOpen }) => {
+  if (!isVisible) return null;
   return (
     <FoldContainer
       onClick={() => setIsOpen(!isOpen)}
