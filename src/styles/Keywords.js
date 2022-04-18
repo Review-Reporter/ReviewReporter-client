@@ -50,7 +50,7 @@ export const Image = styled.img`
 export const KeywordContainer = styled.div``;
 
 export const WordCloudContainer = styled.div`
-  margin-top: -21rem;
+  margin-top: -22rem;
 `;
 
 export const RankContainer = styled.div`
@@ -59,5 +59,5 @@ export const RankContainer = styled.div`
   flex-wrap: wrap;
   max-width: 70rem;
   margin: 0 auto;
-  margin-top: 5rem;
+  margin-top: 4rem;
 `;

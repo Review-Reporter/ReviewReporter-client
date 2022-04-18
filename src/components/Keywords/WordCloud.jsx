@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setKeyword, setActivePage } from '../../modules/data';
 import styled, { css } from 'styled-components';
 
 const WordCloudContainer = styled.div`
@@ -69,6 +71,7 @@ const position = {
 const WordCloud = ({ data }) => {
   const [array1, setArray1] = useState(null);
   const [array2, setArray2] = useState(null);
+  const dispatch = useDispatch();
 
   const randomValue = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -87,6 +90,10 @@ const WordCloud = ({ data }) => {
           left={position.left[random][j]}
         >
           <Word 
+            onClick={() => {
+              dispatch(setKeyword(keys[i]));
+              dispatch(setActivePage('analysis'));
+            }}
             value={data[keys[i]]}
           >{keys[i]}</Word>
         </WordBox>

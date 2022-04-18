@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setActivePage, setCategory, setKeyword } from '../modules/data';
-import toteBag from '../assets/images/toteBag.jpg';
-import backpack from '../assets/images/backpack.jpg';
+import { setActivePage, setCategory } from '../../modules/data';
+import toteBag from '../../assets/images/toteBag.jpg';
+import backpack from '../../assets/images/backpack.jpg';
 import {
   PageContainer,
   CategoryContainer,
   Category,
   Image,
   Text
-} from '../styles/Categories';
+} from '../../styles/Categories';
 
 
 const Categories = () => {

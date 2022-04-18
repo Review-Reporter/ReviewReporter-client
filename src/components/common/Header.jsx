@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setActivePage } from '../modules/data';
+import { setActivePage } from '../../modules/data';
 import styled from 'styled-components';
 
 const HeaderArea = styled.div`
@@ -59,19 +59,19 @@ const Header = () => {
   const [pageY, setPageY] = useState(0);
   const dispatch = useDispatch();
 
-  const handleScroll = () => {
-    const { pageYOffset } = window;
-    const deltaY = pageYOffset - pageY;
-    const hide = pageYOffset !== 0 && deltaY >= 0;
-    setHide(hide);
-    setPageY(pageYOffset);
-  }
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   useEffect(() => {
+    const handleScroll = () => {
+      const { pageYOffset } = window;
+      const deltaY = pageYOffset - pageY;
+      const hide = pageYOffset !== 0 && deltaY >= 0;
+      setHide(hide);
+      setPageY(pageYOffset);
+    }
+    
     const throttle = (callback, waitTime) => {
       let timerId = null;
       return (e) => {

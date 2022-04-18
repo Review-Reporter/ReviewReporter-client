@@ -1,7 +1,6 @@
 import { forwardRef, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import toteBag from '../assets/images/toteBag.png';
-import backpack from '../assets/images/backpack.png';
+import toteBag from '../../assets/images/toteBag.png';
+import backpack from '../../assets/images/backpack.png';
 import WordCloud from './WordCloud';
 import Rank from './Rank';
 import {
@@ -14,7 +13,7 @@ import {
   KeywordContainer,
   WordCloudContainer,
   RankContainer,
-} from '../styles/Keywords';
+} from '../../styles/Keywords';
 
 
 const toteBagData = {
@@ -44,10 +43,9 @@ const backpackData = {
 };
 
 
-const Keywords = ({}, ref) => {
+const Keywords = ({ category }, ref) => {
   const [data, setData] = useState(null);
   const [rank, setRank] = useState(null);
-  const { category } = useSelector(state => state.data);
 
   useEffect(() => {
     let selectedData = (category === 'Backpack') ? backpackData : toteBagData;
@@ -103,7 +101,11 @@ const Keywords = ({}, ref) => {
         {rank &&
         <RankContainer>
           {rank.map((keyword, i) => (
-           <Rank key={i} rank={i} keyword={keyword} />
+            <Rank 
+              key={i} 
+              rank={i+1} 
+              keyword={keyword} 
+            />
           ))}
         </RankContainer>}
       </ContentsContainer>

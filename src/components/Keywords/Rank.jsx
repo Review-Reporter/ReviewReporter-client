@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setKeyword, setActivePage } from '../../modules/data';
 
 const RankContainer = styled.div`
   display: flex;
@@ -58,8 +60,15 @@ const RoundBackground = styled.div`
 `;
 
 const Rank = ({ rank, keyword }) => {
+  const dispatch = useDispatch();
+
   return (
-    <RankContainer>
+    <RankContainer
+      onClick={() => {
+        dispatch(setKeyword(keyword));
+        dispatch(setActivePage('analysis'));
+      }}
+    >
       <NumBackground><Num>{rank}</Num></NumBackground>
       <Keyword>
         <RectBackground>{keyword}</RectBackground><RoundBackground />
