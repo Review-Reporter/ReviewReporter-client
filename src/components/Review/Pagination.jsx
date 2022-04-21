@@ -39,11 +39,11 @@ const Next = styled(MdArrowForwardIos)`
 
 
 const Pagination = ({ currentPage, setCurrentPage, totalPage, scrollToTop }) => {
-  const paginationLimit = useRef(10);
+  const limit = useRef(10);
   const [startPage, setStartPage] = useState(null);
 
   const setNextPage = () => {
-    setCurrentPage(startPage + paginationLimit.current);
+    setCurrentPage(startPage + limit.current);
   }
 
   const setPrevPage = () => {
@@ -52,10 +52,9 @@ const Pagination = ({ currentPage, setCurrentPage, totalPage, scrollToTop }) => 
 
   const ButtonContainer = () => {
     const start = startPage;
-    const limit = paginationLimit.current;
     const array = [];
 
-    for (let i=start; i<start+limit; i++) {
+    for (let i=start; i<start+limit.current; i++) {
       if (i > totalPage) break;
       array.push(
       <Button
@@ -72,7 +71,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPage, scrollToTop }) => 
   }
 
   useEffect(() => {
-    setStartPage(parseInt((currentPage - 1) / paginationLimit.current) * paginationLimit.current + 1);
+    setStartPage(parseInt((currentPage - 1) / limit.current) * limit.current + 1);
   }, [currentPage]);
 
 
@@ -83,7 +82,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPage, scrollToTop }) => 
         onClick={setPrevPage}
       ><Prev /></Button>}
       <ButtonContainer />
-      {startPage + paginationLimit.current <= totalPage &&
+      {startPage + limit.current <= totalPage &&
       <Button
         onClick={setNextPage}
       ><Next /></Button>}

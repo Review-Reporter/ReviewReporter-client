@@ -20,6 +20,10 @@ export const Category = styled.div`
   letter-spacing: 0.1rem;
 `;
 
+export const Keyword = styled.span`
+  color: ${props => props.theme.primary_color};
+`;
+
 export const ContentsContainer = styled.div`
   display: flex;
   width: 100%;
@@ -48,7 +52,6 @@ export const Background = styled.div`
   width: 100%;
   // height 추후 삭제
   height: 50rem;
-  transition: 0.2s ease;
 
   ${props =>
     props.graph &&
@@ -56,7 +59,6 @@ export const Background = styled.div`
       width: 100%;
       height: 20rem;
       padding: 1rem;
-      cursor: pointer;
 
       &:hover {
         transform: scale(1.3);

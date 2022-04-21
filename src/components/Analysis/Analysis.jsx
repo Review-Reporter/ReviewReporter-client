@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import {
   PageContainer,
+  Keyword,
   Category,
   ContentsContainer,
   GraphContainer,
@@ -20,7 +21,7 @@ const Analysis = ({ category, keyword }, ref) => {
       <Category>{category}</Category>
       <ContentsContainer>
         <GraphContainer>
-          <Title>'{keyword}' 언급량</Title>
+          <Title><Keyword>'{keyword}'</Keyword> 언급량</Title>
           <Background
             graph
           ><Graph/></Background>
