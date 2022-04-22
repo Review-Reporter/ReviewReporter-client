@@ -4,3 +4,9 @@ const api = axios.create({
   baseURL: 'https://localhost:4000/'
 });
 
+
+export const getKeyword = () => {
+
+};
+
+export const getReview = () => api.get();
