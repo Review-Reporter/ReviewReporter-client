@@ -32,10 +32,10 @@ export const Background = styled.div`
 
 export const TagContainer = styled.div`
   display: flex;
+  flex-flow: wrap;
   width: 100%;
-  height: 3rem;
   border: 1px solid ${props => props.theme.border_color};
-  padding: 0 0.5rem;
+  padding: 0.1rem 0.5rem;
   align-items: center;
 `;
 

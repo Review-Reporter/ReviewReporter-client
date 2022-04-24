@@ -21,7 +21,7 @@ export const Category = styled.div`
 `;
 
 export const Keyword = styled.span`
-  color: ${props => props.theme.primary_color};
+  color: ${props => props.theme.sub_color};
 `;
 
 export const ContentsContainer = styled.div`

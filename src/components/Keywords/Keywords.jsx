@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react';
+import DataAPI from '../../api/DataAPI';
 import toteBag from '../../assets/images/toteBag.png';
 import backpack from '../../assets/images/backpack.png';
 import WordCloud from './WordCloud';
@@ -16,42 +17,18 @@ import {
 } from '../../styles/Keywords';
 
 
-const toteBagData = {
-  "tote1": 10, 
-  "tote2": 5, 
-  "tote3": 4, 
-  "tote4": 14, 
-  "tote5": 6, 
-  "tote6": 13, 
-  "tote7": 8, 
-  "tote8": 15, 
-  "tote9": 21, 
-  "tote10": 1
-};
-
-const backpackData = {
-  "backpack1": 10, 
-  "backpack2": 5, 
-  "backpack3": 4, 
-  "backpack4": 14, 
-  "backpack5": 6, 
-  "backpack6": 13, 
-  "backpack7": 8, 
-  "backpack8": 15, 
-  "backpack9": 21, 
-  "backpack10": 1
-};
-
-
 const Keywords = ({ category }, ref) => {
   const [data, setData] = useState(null);
   const [rank, setRank] = useState(null);
 
   useEffect(() => {
-    let selectedData = (category === 'Backpack') ? backpackData : toteBagData;
+    const getKeywordData = async() => {
+      const result = await DataAPI.getKeyword(category);
+      setData(result);
+      calculateRank(result);
+    }
 
-    setData(selectedData);
-    calculateRank(selectedData);
+    getKeywordData();
   }, [category]);
 
   const calculateRank = (data) => {

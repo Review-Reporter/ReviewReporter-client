@@ -1,12 +1,29 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://localhost:4000/'
+  baseURL: 'http://localhost:4000'
 });
 
 
-export const getKeyword = () => {
+const DataAPI = {
+  getKeyword: async(category) => {
+    const res = await api
+    .get(`/keyword?category=${category}`) // 변경
+    .catch(err =>
+      console.log(err)
+    );
+    
+    return res.data[0].data; // 변경
+  },
+  getReview: async() => {
+    const res = await api
+    .get(`/review`)
+    .catch(err =>
+      console.log(err)
+    );
 
+    return res.data;
+  }
 };
 
-export const getReview = () => api.get();
+export default DataAPI;
