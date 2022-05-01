@@ -7,7 +7,13 @@ const ReviewContentsContainer = styled.div`
   padding: 1.2rem 1rem;
 `;
 
+const ReviewLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 const Meta = styled.div`
+  display: inline-block;
   font-size: 0.75rem;
   color: gray;
   margin-top: 0.5rem;
@@ -34,7 +40,7 @@ const Text = styled.div`
 
 
 
-const ReviewContents = ({ vendor_name , date, product_name, contents }) => {
+const ReviewContents = ({ vendor_name , date, product_name, contents, url }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFoldVisible, setIsFoldVisible] = useState(false);
   const text = useRef(null);
@@ -46,7 +52,13 @@ const ReviewContents = ({ vendor_name , date, product_name, contents }) => {
   
   return (
     <ReviewContentsContainer>
-      <Meta>{vendor_name} · {date} · {product_name}</Meta>
+      <ReviewLink
+        href={url}
+        title="해당 상품의 상세 사이트로 이동합니다."
+        target="_blank"
+      > 
+        <Meta>{vendor_name} · {date} · {product_name}</Meta>
+      </ReviewLink>
       <Text
         ref={text}
         isOpen={isOpen}

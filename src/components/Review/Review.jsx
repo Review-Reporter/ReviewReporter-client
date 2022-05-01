@@ -81,6 +81,7 @@ const Review = ({ category, keyword }) => {
                 product_name={review.product_name}
                 date={review.date}
                 contents={review.contents}
+                url={review.url}
               />
             )}
           </ReviewContainer>}
