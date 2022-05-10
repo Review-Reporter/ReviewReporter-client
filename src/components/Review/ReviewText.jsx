@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
 const Text = styled.div`
@@ -19,20 +19,25 @@ const Text = styled.div`
   font-size: 1rem;
 `;
 
-const ReviewText = ({ isOpen, setIsFoldVisible, children }) => {
+const ReviewText = ({ isOpen, setIsFoldVisible, children, currentPage, reviewKeyword }) => {
   const text = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (text.current.scrollHeight > 58) setIsFoldVisible(true);
-      else setIsFoldVisible(false);
-    }
+  const handleResize = () => {
+    if (text.current.scrollHeight > 58) setIsFoldVisible(true);
+    else setIsFoldVisible(false);
+  }
 
+  useEffect(() => {
     window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('resize', handleResize);
     }
   }, []);
+
+  useEffect(() => {
+    handleResize();
+  }, [currentPage, reviewKeyword]);
 
   return (
     <Text

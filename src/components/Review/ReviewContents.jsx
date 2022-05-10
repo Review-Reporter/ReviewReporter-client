@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fold from './Fold';
 import ReviewText from './ReviewText';
@@ -23,7 +23,7 @@ const Meta = styled.div`
 
 
 
-const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, url }) => {
+const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, url, currentPage, reviewKeyword }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFoldVisible, setIsFoldVisible] = useState(false);
 
@@ -47,6 +47,8 @@ const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, u
         isFoldVisible={isFoldVisible}
         setIsFoldVisible={setIsFoldVisible}
         isOpen={isOpen}
+        currentPage={currentPage}
+        reviewKeyword={reviewKeyword}
       >{Text()}</ReviewText>
       <Fold
         isVisible={isFoldVisible}
