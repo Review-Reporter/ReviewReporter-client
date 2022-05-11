@@ -5,9 +5,7 @@ import styled, { css } from 'styled-components';
 
 const WordCloudContainer = styled.div`
   width: 100%;
-  height: 20rem;
   display: flex;
-  justify-content: center;
 `;
 
 const WordBox = styled.div`
@@ -15,11 +13,14 @@ const WordBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 2.6em;
+  max-width: 180px;
+  text-align: center;
   height: 66px;
+
   ${props => {
-    let topValue = props.top + "rem";
-    let leftValue = props.left + "rem";
+    let topValue = props.top/3 + "em";
+    let leftValue = props.left/3 + "em";
 
     return css`
       top: ${topValue};
@@ -30,7 +31,9 @@ const WordBox = styled.div`
 
 const Word = styled.div`
   display: inline-block;
-  font-size: 40px; // 20px ~ 100px , 20px ~ 50px
+  width: 100%;
+  font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
+  
   cursor: pointer;
   &:hover { 
     opacity: 0.8;
@@ -40,29 +43,32 @@ const Word = styled.div`
 `;
 
 const ImgArea = styled.div`
-  width: 22rem;
-  height: 420px;
-  margin: 0 auto;
+  width: 37%;
 `;
 
 const DataContainer = styled.div`
   position: relative;
-  width: 25rem;
+  width: 32%;
   margin-top: -3rem;
+  max-width: 20rem;
+
+  @media screen and (min-width: 1240px) {
+    font-size: 4rem;
+  }
 `;
 
 const position = {
   top: {
-    0: [0, 1, 8, 13, 20],
-    1: [0, 4, 8, 13, 20],
-    2: [0, 2, 8, 16, 20],
-    3: [0, 4, 7, 12, 18]
+    0: [0, 1, 8, 11, 15],
+    1: [0, 4, 8, 11, 15],
+    2: [0, 2, 8, 12, 15],
+    3: [0, 4, 7, 10, 14]
   },
   left: {
-    0: [-1, 13, 0, 10, 4],
-    1: [13, 0, 10, 3, 8],
-    2: [13, -1, 8, 3, 8],
-    3: [13, -1, 7, 12, 3]
+    0: [-2, 10, 0, 7, 4],
+    1: [10, 0, 9, 3, 9],
+    2: [10, -2, 8, 3, 9],
+    3: [10, -2, 7, 10, 3]
   }
 };
 

@@ -67,6 +67,7 @@ const Keywords = ({ category }, ref) => {
           <Image 
             value={category} 
             src={category === 'Backpack' ? backpack : toteBag}
+            style={category === 'Tote Bag' ? {marginTop: '0.8em'} : {}}
           />
         </ImageWrapper>
         {data && <WordCloudContainer>
