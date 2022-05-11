@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActivePage, setCategory } from '../../modules/data';
-import toteBag from '../../assets/images/toteBag.jpg';
-import backpack from '../../assets/images/backpack.jpg';
+import toteBag from '../../assets/images/categories_toteBag.png';
+import backpack from '../../assets/images/categories_backpack.png';
 import {
   PageContainer,
   CategoryContainer,
   Category,
   Image,
-  Text
 } from '../../styles/Categories';
 
 
@@ -29,7 +28,6 @@ const Categories = () => {
           }}
         >
           <Image src={toteBag} />
-          <Text>Tote Bag</Text>
         </Category>
         <Category
           onClick={() => {
@@ -38,7 +36,6 @@ const Categories = () => {
           }}
         >
           <Image src={backpack} />
-          <Text style={{left: '19%'}}>Backpack</Text>
         </Category>
       </CategoryContainer>
     </PageContainer>
