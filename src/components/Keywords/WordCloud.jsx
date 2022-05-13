@@ -33,6 +33,7 @@ const Word = styled.div`
   display: inline-block;
   width: 100%;
   font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
+  color: ${props => props.theme[props.color]};
   
   cursor: pointer;
   &:hover { 
@@ -53,24 +54,31 @@ const DataContainer = styled.div`
   max-width: 20rem;
 
   @media screen and (min-width: 1240px) {
-    font-size: 4rem;
+    font-size: 3.8rem;
   }
 `;
 
 const position = {
   top: {
-    0: [0, 1, 8, 11, 15],
-    1: [0, 4, 8, 11, 15],
-    2: [0, 2, 8, 12, 15],
-    3: [0, 4, 7, 10, 14]
+    0: [0, 1, 8, 11, 17],
+    1: [0, 4, 8, 11, 17],
+    2: [0, 2, 8, 12, 17],
+    3: [0, 4, 7, 10, 15]
   },
   left: {
     0: [-2, 10, 0, 7, 4],
-    1: [10, 0, 9, 3, 9],
+    1: [10, 0, 7, 3, 9],
     2: [10, -2, 8, 3, 9],
     3: [10, -2, 7, 10, 3]
   }
 };
+
+const color = [
+  ["sub_color", "primary_color", "text_color", "sub_color", "primary_color"],
+  ["text_color", "sub_color", "sub_color", "primary_color", "text_color"],
+  ["text_color", "primary_color", "sub_color", "primary_color", "text_color"],
+  ["sub_color", "text_color", "primary_color", "sub_color", "text_color"],
+]
 
 
 
@@ -86,14 +94,15 @@ const WordCloud = ({ data }) => {
   const divideArray = (from, to) => {
     let array = [];
     let keys = Object.keys(data);
-    let random = randomValue(0, 3);
+    let random_position = randomValue(0, 3);
+    let random_color = randomValue(0, 3);
 
     for (let i=from, j=0; i<to; i++, j++){
       array.push(
         <WordBox
           key={i}
-          top={position.top[random][j]}
-          left={position.left[random][j]}
+          top={position.top[random_position][j]}
+          left={position.left[random_position][j]}
         >
           <Word 
             onClick={() => {
@@ -101,6 +110,7 @@ const WordCloud = ({ data }) => {
               dispatch(setActivePage('analysis'));
             }}
             value={data[keys[i]]}
+            color={color[random_color][j]}
           >{keys[i]}</Word>
         </WordBox>
       )

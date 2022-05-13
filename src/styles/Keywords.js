@@ -40,7 +40,7 @@ export const Category = styled.div`
 export const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: -1em;
+  margin-top: -1.5em;
 `;
 
 export const Image = styled.img`
@@ -61,5 +61,5 @@ export const RankContainer = styled.div`
   flex-wrap: wrap;
   max-width: 70rem;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
 `;

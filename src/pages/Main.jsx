@@ -19,7 +19,7 @@ const Main = () => {
     else if (active_page === 'keywords'){
       dispatch(setKeyword(""));
       dispatch(setActivePage(""));
-      window.scrollTo({ top: keywordRef.current.offsetTop - 20, behavior: 'smooth' });
+      window.scrollTo({ top: keywordRef.current.offsetTop - 10, behavior: 'smooth' });
     }
     else if (active_page === 'analysis') {
       dispatch(setActivePage(""));
