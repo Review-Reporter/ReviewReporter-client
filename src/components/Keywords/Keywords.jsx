@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react';
 import DataAPI from '../../api/DataAPI';
-import axios from 'axios';
 import toteBag from '../../assets/images/toteBag.png';
 import backpack from '../../assets/images/backpack.png';
 import WordCloud from './WordCloud';

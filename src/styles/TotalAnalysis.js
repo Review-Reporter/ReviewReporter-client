@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 export const PageContainer = styled.div`
   display: flex;
@@ -6,28 +7,53 @@ export const PageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   max-width: 1280px;
+  min-height: 100vh;
   padding: 2rem;
   margin: 0 auto;
   font-weight: 500;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
   margin-bottom: 2rem;
 `;
 
-export const Category = styled.div`
-  width: 100%;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
+export const Title = styled.div`
+  font-size: 1.5rem;
 `;
 
-export const Keyword = styled.span`
-  color: ${props => props.theme.sub_color};
+export const SubTitle = styled.span`
+  font-size: 1rem;
+  color: lightgray;
 `;
+
+export const Category = styled.span`
+  color: ${props => props.theme.sub_color};
+  font-weight: bold;
+`;
+
+export const InfoIcon = styled(AiOutlineInfoCircle)`
+  margin-left: 0.5rem;
+  cursor: pointer;
+
+  &:hover { opacity: 0.8; };
+  &:active { opacity: 0.7 };
+`;
+
+export const HighLight = styled.div``;
 
 export const ContentsContainer = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 2rem;
+`;
+
+export const ContentsTitle = styled.div`
+  font-size: 1.25rem;
+  margin-bottom: 0.7rem;
+  padding-left: 0.5rem;
 `;
 
 export const GraphContainer = styled.div`
@@ -38,12 +64,6 @@ export const GraphContainer = styled.div`
 export const Graph = styled.img`
   width: 100%;
   height: 100%;
-`;
-
-export const Title = styled.div`
-  font-size: 1.25rem;
-  margin-bottom: 0.7rem;
-  padding-left: 0.5rem;
 `;
 
 export const Background = styled.div`
@@ -62,7 +82,6 @@ export const Background = styled.div`
     `
   };
 `;
-
 
 export const AnalysisContainer = styled.div`
   width: 100%;

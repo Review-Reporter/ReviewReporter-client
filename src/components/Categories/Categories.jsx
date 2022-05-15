@@ -24,7 +24,7 @@ const Categories = () => {
         <Category
           onClick={() => {
             dispatch(setCategory('Tote Bag'));
-            dispatch(setActivePage('keywords'));
+            dispatch(setActivePage('total_analysis'));
           }}
         >
           <Image src={toteBag} />
@@ -32,7 +32,7 @@ const Categories = () => {
         <Category
           onClick={() => {
             dispatch(setCategory('Backpack'));
-            dispatch(setActivePage('keywords'));
+            dispatch(setActivePage('total_analysis'));
           }}
         >
           <Image src={backpack} />
