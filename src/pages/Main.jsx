@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setKeyword, setActivePage } from '../modules/data';
 import TotalAnalysis from '../components/TotalAnalysis/TotalAnalysis';
@@ -8,6 +8,7 @@ import Analysis from "../components/Analysis/Analysis";
 import Review from '../components/Review/Review';
 
 const Main = () => {
+  const [isKeywordsVisible, setIsKeywordsVisible] = useState(false);
   const { category, keyword, active_page } = useSelector(state => state.data);
   const dispatch = useDispatch();
   const totalAnalysisRef = useRef(null);
@@ -15,21 +16,23 @@ const Main = () => {
   const analysisRef = useRef(null);
 
   useEffect(() => {
+    dispatch(setActivePage(""));
+
     switch (active_page) {
       case 'categories':
+        setIsKeywordsVisible(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
       case 'total_analysis':
-        dispatch(setActivePage(""));
+        setIsKeywordsVisible(false);
+        dispatch(setKeyword(""));
         window.scrollTo({ top: totalAnalysisRef.current.offsetTop - 20, behavior: 'smooth' });
         break;
       case 'keywords':
         dispatch(setKeyword(""));
-        dispatch(setActivePage(""));
         window.scrollTo({ top: keywordRef.current.offsetTop - 10, behavior: 'smooth' });
         break;
       case 'analysis':
-        dispatch(setActivePage(""));
         window.scrollTo({ top: analysisRef.current.offsetTop - 20, behavior: 'smooth' });
         break
       default:
@@ -46,9 +49,11 @@ const Main = () => {
       <TotalAnalysis
         ref={totalAnalysisRef}
         category={category}
+        setIsClicked={setIsKeywordsVisible}
       />
       }
       {category &&
+       isKeywordsVisible &&
       <Keywords 
         ref={keywordRef}
         category={category}

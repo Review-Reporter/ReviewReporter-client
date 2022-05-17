@@ -30,7 +30,7 @@ export const SubTitle = styled.span`
 `;
 
 export const Category = styled.span`
-  color: ${props => props.theme.sub_color};
+  color: ${ props => props.theme.sub_color };
   font-weight: bold;
 `;
 
@@ -42,7 +42,9 @@ export const InfoIcon = styled(AiOutlineInfoCircle)`
   &:active { opacity: 0.7 };
 `;
 
-export const HighLight = styled.div``;
+export const HighLight = styled.span`
+  color: ${props => props.theme.sub_color};
+`;
 
 export const ContentsContainer = styled.div`
   display: flex;
@@ -70,8 +72,6 @@ export const Background = styled.div`
   padding: 2rem;
   background: ${props => props.theme.dark_bg_color};
   width: 100%;
-  // height 추후 삭제
-  height: 50rem;
 
   ${props =>
     props.graph &&
@@ -86,4 +86,28 @@ export const Background = styled.div`
 export const AnalysisContainer = styled.div`
   width: 100%;
   padding: 1rem;
+`;
+
+export const TextContainer = styled.div`
+  color: ${props => props.theme.sub_text_color};
+`;
+
+export const Text = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+
+  &:last-child { margin-bottom: 0 };
+`;
+
+export const ButtonWrapper = styled.div``;
+
+export const Button = styled.div`
+  color: lightgray;
+  font-size: 1.3rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover { opacity: 0.8; };
+  &:active { opacity: 0.7 };
 `;
