@@ -3,8 +3,8 @@ import { FiArrowUp } from 'react-icons/fi';
 
 const Button = styled.div`
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   justify-content: center;
   align-items: center;
   background: white;
