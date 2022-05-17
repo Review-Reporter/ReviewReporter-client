@@ -6,6 +6,7 @@ import Categories from "../components/Categories/Categories";
 import Keywords from "../components/Keywords/Keywords";
 import Analysis from "../components/Analysis/Analysis";
 import Review from '../components/Review/Review';
+import ScrollTop from '../components/common/ScrollTop';
 
 const Main = () => {
   const [isKeywordsVisible, setIsKeywordsVisible] = useState(false);
@@ -72,6 +73,7 @@ const Main = () => {
         />
       </>
       }
+      <ScrollTop />
     </div>
   )
 };
