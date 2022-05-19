@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { AiOutlineInfoCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+import { IoCloseOutline } from 'react-icons/io5'
 
 export const PageContainer = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ export const PageContainer = styled.div`
   max-width: 1280px;
   min-height: 100vh;
   padding: 2rem;
+  padding-bottom: 4rem;
   margin: 0 auto;
   font-weight: 500;
 `;
@@ -59,28 +61,50 @@ export const ContentsTitle = styled.div`
 `;
 
 export const GraphContainer = styled.div`
-  width: 50%;
   padding: 1rem;
 `;
 
 export const Graph = styled.img`
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 
 export const Background = styled.div`
+  position: relative;
   padding: 2rem;
   background: ${props => props.theme.dark_bg_color};
   width: 100%;
+  transition-property: width;
+  transition-duration: 0.3s;
 
   ${props =>
     props.graph &&
     css`
       width: 100%;
-      height: 20rem;
       padding: 1rem;
+      cursor: pointer;
     `
   };
+`;
+
+export const CloseIcon = styled(IoCloseOutline)`
+  color: darkgray;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  &:hover { opacity: 0.8; };
+  &:active { opacity: 0.7 };
+`;
+
+export const OpenIcon = styled(AiOutlinePlusCircle)`
+  color: darkgray;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  &:hover { opacity: 0.8; };
+  &:active { opacity: 0.7 };
 `;
 
 export const AnalysisContainer = styled.div`

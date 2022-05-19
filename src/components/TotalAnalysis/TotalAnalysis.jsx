@@ -3,6 +3,12 @@ import Info from '../common/Info';
 import DataAPI from '../../api/DataAPI';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/data';
+import backpackTotalMentionGraph from '../../assets/images/backpack_total_mention_graph.png';
+import totebagTotalMentionGraph from '../../assets/images/totebag_total_mention_graph.png';
+import backpackSalesGraph from '../../assets/images/backpack_sales_graph.png';
+import totebagSalesGraph from '../../assets/images/totebag_sales_graph.png';
+
+
 import {
   PageContainer,
   TitleContainer,
@@ -15,16 +21,20 @@ import {
   GraphContainer,
   Graph,
   Background,
+  CloseIcon,
+  OpenIcon,
   AnalysisContainer,
   TextContainer,
   Text,
   HighLight,
   ButtonWrapper,
-  Button,
+  Button
 } from '../../styles/TotalAnalysis';
 
 const TotalAnalysis = ({ category, setIsClicked }, ref) => {
   const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [isMentionGraphClicked, setIsMentionGraphClicked] = useState(false);
+  const [isSalesGraphClicked, setIsSalesGraphClicked] = useState(false);
   const [keywords, setKeywords] = useState([]);
   const dispatch = useDispatch();
 
@@ -36,6 +46,17 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
     }
 
     return text.slice(0, -1)
+  }
+
+  const onGraphClicked = (value) => {
+    if (value === 'sales') {
+      setIsSalesGraphClicked(!isSalesGraphClicked);
+      setIsMentionGraphClicked(false);
+    }
+    else {
+      setIsSalesGraphClicked(false);
+      setIsMentionGraphClicked(!isMentionGraphClicked);
+    }
   }
 
   useEffect(() => {
@@ -79,18 +100,39 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
         >[21.05.09 ~ 22.04.23] 기간 동안 'Google'과 'NAVER'에서의 검색량을 바탕으로 언급량을 측정하였습니다.</Info>
       </TitleContainer>
       <ContentsContainer>
-        <GraphContainer>
+        {!isSalesGraphClicked &&
+        <GraphContainer
+          title={!isMentionGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
+        >
           <ContentsTitle>언급량 <SubTitle>- 판매량 연관 키워드</SubTitle></ContentsTitle>
           <Background
             graph
-          ><Graph /></Background>
+            isClicked={isMentionGraphClicked}
+            onClick={() => onGraphClicked('mention')}
+          >
+            <Graph
+              src={category === 'Backpack' ? backpackTotalMentionGraph : totebagTotalMentionGraph} 
+            />
+            {isMentionGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
+          </Background>
         </GraphContainer>
-        <GraphContainer>
+        }
+        {!isMentionGraphClicked &&
+        <GraphContainer
+        title={!isSalesGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
+        >
           <ContentsTitle>판매량</ContentsTitle>
           <Background
             graph
-          ><Graph /></Background>
-        </GraphContainer>
+            isClicked={isSalesGraphClicked}
+            onClick={() => onGraphClicked('sales')}
+          >
+            <Graph
+              src={category === 'Backpack' ? backpackSalesGraph : totebagSalesGraph}  
+            />
+              {isSalesGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
+          </Background>
+        </GraphContainer>}
       </ContentsContainer>
       {keywords &&
       <ContentsContainer>
