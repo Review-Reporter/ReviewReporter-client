@@ -41,6 +41,16 @@ const Word = styled.div`
     transform: scale(1.05);
   };
   &:active { opacity: 0.7 };
+
+  ${props => {
+    let value = 0.5 + parseFloat(props.value)*2 + "em";
+
+    console.log(value);
+
+    return css`
+      font-size: ${value};
+    `
+  }};
 `;
 
 const ImgArea = styled.div`
@@ -94,10 +104,14 @@ const WordCloud = ({ data }) => {
   const divideArray = (from, to) => {
     let array = [];
     let keys = Object.keys(data);
+    let values = Object.values(data);
     let random_position = randomValue(0, 3);
     let random_color = randomValue(0, 3);
 
+    const sum = values.reduce((sum, currentValue) => sum + currentValue);
+
     for (let i=from, j=0; i<to; i++, j++){
+      console.log(values[i]);
       array.push(
         <WordBox
           key={i}
@@ -109,7 +123,7 @@ const WordCloud = ({ data }) => {
               dispatch(setKeyword(keys[i]));
               dispatch(setActivePage('analysis'));
             }}
-            value={data[keys[i]]}
+            value={values[i]/sum}
             color={color[random_color][j]}
           >{keys[i]}</Word>
         </WordBox>
