@@ -3,12 +3,10 @@ import Info from '../common/Info';
 import DataAPI from '../../api/DataAPI';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/data';
-import backpackTotalMentionGraph from '../../assets/images/backpack_total_mention_graph.png';
-import totebagTotalMentionGraph from '../../assets/images/totebag_total_mention_graph.png';
-import backpackSalesGraph from '../../assets/images/backpack_sales_graph.png';
-import totebagSalesGraph from '../../assets/images/totebag_sales_graph.png';
-
-
+import backpackTotalMentionGraph from '../../assets/images/total/backpack_total_mention_graph.png';
+import totebagTotalMentionGraph from '../../assets/images/total/totebag_total_mention_graph.png';
+import backpackSalesGraph from '../../assets/images/sales/Backpack_sales.png';
+import totebagSalesGraph from '../../assets/images/sales/Tote Bag_sales.png';
 import {
   PageContainer,
   TitleContainer,
@@ -76,6 +74,11 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
   }, [isInfoVisible]);
 
   useEffect(() => {
+    setIsMentionGraphClicked(false);
+    setIsSalesGraphClicked(false);
+  }, [category]);
+
+  useEffect(() => {
     const getKeywordData = async() => {
       const data = await DataAPI.getKeyword(category);
 
@@ -91,7 +94,7 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
     >
       <TitleContainer>
         <Title><Category>{category}</Category> 카테고리 통합 분석</Title>
-        <InfoIcon size="24" color="darkgray"
+        <InfoIcon size="24"
           onClick={() => setIsInfoVisible(true)}
         />
         <Info
@@ -101,12 +104,11 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
       </TitleContainer>
       <ContentsContainer>
         {!isSalesGraphClicked &&
-        <GraphContainer
-          title={!isMentionGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
-        >
+        <GraphContainer>
           <ContentsTitle>언급량 <SubTitle>- 판매량 연관 키워드</SubTitle></ContentsTitle>
           <Background
             graph
+            title={!isMentionGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
             isClicked={isMentionGraphClicked}
             onClick={() => onGraphClicked('mention')}
           >
@@ -118,12 +120,11 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
         </GraphContainer>
         }
         {!isMentionGraphClicked &&
-        <GraphContainer
-        title={!isSalesGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
-        >
+        <GraphContainer>
           <ContentsTitle>판매량</ContentsTitle>
           <Background
             graph
+            title={!isSalesGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
             isClicked={isSalesGraphClicked}
             onClick={() => onGraphClicked('sales')}
           >

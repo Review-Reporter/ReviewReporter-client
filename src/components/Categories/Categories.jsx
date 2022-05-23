@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActivePage, setCategory } from '../../modules/data';
-import toteBag from '../../assets/images/categories_toteBag.png';
-import backpack from '../../assets/images/categories_backpack.png';
+import toteBag from '../../assets/images/category/Tote Bag.png';
+import backpack from '../../assets/images/category/Backpack.png';
 import {
   PageContainer,
   CategoryContainer,

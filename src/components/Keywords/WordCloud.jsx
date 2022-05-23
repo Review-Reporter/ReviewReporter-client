@@ -45,8 +45,6 @@ const Word = styled.div`
   ${props => {
     let value = 0.5 + parseFloat(props.value)*2 + "em";
 
-    console.log(value);
-
     return css`
       font-size: ${value};
     `
@@ -111,7 +109,6 @@ const WordCloud = ({ data }) => {
     const sum = values.reduce((sum, currentValue) => sum + currentValue);
 
     for (let i=from, j=0; i<to; i++, j++){
-      console.log(values[i]);
       array.push(
         <WordBox
           key={i}

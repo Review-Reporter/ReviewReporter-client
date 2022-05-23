@@ -37,6 +37,7 @@ export const Category = styled.span`
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
+  color: darkgray;
   margin-left: 0.5rem;
   cursor: pointer;
 
@@ -74,8 +75,6 @@ export const Background = styled.div`
   padding: 2rem;
   background: ${props => props.theme.dark_bg_color};
   width: 100%;
-  transition-property: width;
-  transition-duration: 0.3s;
 
   ${props =>
     props.graph &&
