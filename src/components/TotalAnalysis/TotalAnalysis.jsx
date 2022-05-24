@@ -14,6 +14,9 @@ import {
   SubTitle,
   Category,
   InfoIcon,
+  KeywordContainer,
+  Keyword,
+  Line,
   ContentsContainer,
   ContentsTitle,
   GraphContainer,
@@ -33,6 +36,8 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [isMentionGraphClicked, setIsMentionGraphClicked] = useState(false);
   const [isSalesGraphClicked, setIsSalesGraphClicked] = useState(false);
+  const [graphKeywords, setGraphKeywords] = useState([]);
+  const [selectedKeyword, setSelectedKeyword] = useState('');
   const [keywords, setKeywords] = useState([]);
   const dispatch = useDispatch();
 
@@ -79,14 +84,23 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
   }, [category]);
 
   useEffect(() => {
+    const getSelectedKeywordData = async() => {
+      const result = await DataAPI.getSelectedKeyword(category);
+
+      setGraphKeywords(result);
+    }
+
     const getKeywordData = async() => {
       const data = await DataAPI.getKeyword(category);
 
       setKeywords(Object.keys(data));
     }
 
+    getSelectedKeywordData();
     getKeywordData();
   }, [category])
+
+  const color = [ "#4fa6e0", "#e8bc2c", "#e394aa", "#8cd16f" ];
   
   return (
     <PageContainer
@@ -116,6 +130,19 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
               src={category === 'Backpack' ? backpackTotalMentionGraph : totebagTotalMentionGraph} 
             />
             {isMentionGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
+            {graphKeywords &&
+            <KeywordContainer>
+              {graphKeywords.map((keyword, i) => 
+                <Keyword 
+                  key={i}
+                  title="클릭 시 선택한 키워드와 판매량의 그래프가 나타납니다."
+                  isSelected={selectedKeyword === keyword ? true : false}
+                  onClick={() => setSelectedKeyword(keyword)}
+                >
+                  <Line color={color[i]}/>{keyword}
+                </Keyword>
+              )}
+            </KeywordContainer>}
           </Background>
         </GraphContainer>
         }
@@ -131,7 +158,10 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
             <Graph
               src={category === 'Backpack' ? backpackSalesGraph : totebagSalesGraph}  
             />
-              {isSalesGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
+            {isSalesGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
+            <KeywordContainer>
+              <Keyword static><Line color="white"/>판매량</Keyword>
+            </KeywordContainer>
           </Background>
         </GraphContainer>}
       </ContentsContainer>

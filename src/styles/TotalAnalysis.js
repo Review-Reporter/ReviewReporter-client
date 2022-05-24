@@ -55,6 +55,39 @@ export const ContentsContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
+export const KeywordContainer = styled.div`
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0 1rem;
+`;
+
+export const Keyword = styled.span`
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 0 0.5rem;
+
+  ${props => {
+    const isStatic = props.static;
+
+    if (isStatic) return null;
+    return css`
+      cursor: pointer;
+      &:hover { opacity: 0.8; };
+      &:active { opacity: 0.7 };
+    `
+  }};
+
+  color: ${props => props.isSelected ? "white" : "darkgray"};
+`;
+
+export const Line = styled.div`
+  width: 1rem;
+  height: 2px;
+  margin-right: 0.4rem;
+  background: ${props => props.color};
+`;
+
 export const ContentsTitle = styled.div`
   font-size: 1.25rem;
   margin-bottom: 0.7rem;
