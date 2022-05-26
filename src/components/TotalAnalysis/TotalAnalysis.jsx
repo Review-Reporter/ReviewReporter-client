@@ -1,43 +1,34 @@
 import { useState, forwardRef, useEffect } from 'react';
-import Info from '../common/Info';
+import PopUp from '../common/PopUp';
 import DataAPI from '../../api/DataAPI';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/data';
-import backpackTotalMentionGraph from '../../assets/images/total/backpack_total_mention_graph.png';
-import totebagTotalMentionGraph from '../../assets/images/total/totebag_total_mention_graph.png';
-import backpackSalesGraph from '../../assets/images/sales/Backpack_sales.png';
-import totebagSalesGraph from '../../assets/images/sales/Tote Bag_sales.png';
 import {
   PageContainer,
   TitleContainer,
   Title,
-  SubTitle,
   Category,
   InfoIcon,
-  KeywordContainer,
-  Keyword,
-  Line,
   ContentsContainer,
   ContentsTitle,
   GraphContainer,
   Graph,
   Background,
-  CloseIcon,
   OpenIcon,
   AnalysisContainer,
   TextContainer,
   Text,
   HighLight,
   ButtonWrapper,
-  Button
+  Button,
+  GraphTitle
 } from '../../styles/TotalAnalysis';
 
 const TotalAnalysis = ({ category, setIsClicked }, ref) => {
+  const [folder, setFolder] = useState(null);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
-  const [isMentionGraphClicked, setIsMentionGraphClicked] = useState(false);
-  const [isSalesGraphClicked, setIsSalesGraphClicked] = useState(false);
-  const [graphKeywords, setGraphKeywords] = useState([]);
-  const [selectedKeyword, setSelectedKeyword] = useState('');
+  const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [selectedGraph, setSelectedGraph] = useState('');
   const [keywords, setKeywords] = useState([]);
   const dispatch = useDispatch();
 
@@ -51,19 +42,8 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
     return text.slice(0, -1)
   }
 
-  const onGraphClicked = (value) => {
-    if (value === 'sales') {
-      setIsSalesGraphClicked(!isSalesGraphClicked);
-      setIsMentionGraphClicked(false);
-    }
-    else {
-      setIsSalesGraphClicked(false);
-      setIsMentionGraphClicked(!isMentionGraphClicked);
-    }
-  }
-
-  useEffect(() => {
-    if (isInfoVisible) {
+  const handlePopUpBackground = (isVisible) => {
+    if (isVisible) {
       document.body.style.cssText = `
         position: fixed;
         top: -${window.pageYOffset}px;
@@ -76,18 +56,20 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
       document.body.style.cssText = '';
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     }
+  }
+
+  useEffect(() => {
+    handlePopUpBackground(isInfoVisible);
   }, [isInfoVisible]);
 
   useEffect(() => {
-    setIsMentionGraphClicked(false);
-    setIsSalesGraphClicked(false);
-  }, [category]);
+    handlePopUpBackground(selectedGraph);
+  }, [selectedGraph])
 
   useEffect(() => {
     const getSelectedKeywordData = async() => {
       const result = await DataAPI.getSelectedKeyword(category);
-
-      setGraphKeywords(result);
+      setSelectedKeywords(result);
     }
 
     const getKeywordData = async() => {
@@ -96,11 +78,16 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
       setKeywords(Object.keys(data));
     }
 
+    const getFolderName = () => {
+      let str = category;
+      return str.replace(/ /gi, "");
+    }
+
+    setSelectedKeywords('');
     getSelectedKeywordData();
     getKeywordData();
+    setFolder(getFolderName());
   }, [category])
-
-  const color = [ "#4fa6e0", "#e8bc2c", "#e394aa", "#8cd16f" ];
   
   return (
     <PageContainer
@@ -111,60 +98,31 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
         <InfoIcon size="24"
           onClick={() => setIsInfoVisible(true)}
         />
-        <Info
+        <PopUp
           isVisible={isInfoVisible}
           setIsVisible={setIsInfoVisible}
-        >[21.05.09 ~ 22.04.23] 기간 동안 'Google'과 'NAVER'에서의 검색량을 바탕으로 언급량을 측정하였습니다.</Info>
+        >[21.05.09 ~ 22.04.23] 기간 동안 'Google'과 'NAVER'에서의 검색량을 바탕으로 언급량을 측정하였습니다.</PopUp>
       </TitleContainer>
+      {selectedKeywords &&
       <ContentsContainer>
-        {!isSalesGraphClicked &&
-        <GraphContainer>
-          <ContentsTitle>언급량 <SubTitle>- 판매량 연관 키워드</SubTitle></ContentsTitle>
-          <Background
-            graph
-            title={!isMentionGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
-            isClicked={isMentionGraphClicked}
-            onClick={() => onGraphClicked('mention')}
-          >
-            <Graph
-              src={category === 'Backpack' ? backpackTotalMentionGraph : totebagTotalMentionGraph} 
-            />
-            {isMentionGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
-            {graphKeywords &&
-            <KeywordContainer>
-              {graphKeywords.map((keyword, i) => 
-                <Keyword 
-                  key={i}
-                  title="클릭 시 선택한 키워드와 판매량의 그래프가 나타납니다."
-                  isSelected={selectedKeyword === keyword ? true : false}
-                  onClick={() => setSelectedKeyword(keyword)}
-                >
-                  <Line color={color[i]}/>{keyword}
-                </Keyword>
-              )}
-            </KeywordContainer>}
-          </Background>
-        </GraphContainer>
-        }
-        {!isMentionGraphClicked &&
-        <GraphContainer>
-          <ContentsTitle>판매량</ContentsTitle>
-          <Background
-            graph
-            title={!isSalesGraphClicked ? "클릭 시 이미지가 확대됩니다." : "클릭 시 이미지가 축소됩니다."}
-            isClicked={isSalesGraphClicked}
-            onClick={() => onGraphClicked('sales')}
-          >
-            <Graph
-              src={category === 'Backpack' ? backpackSalesGraph : totebagSalesGraph}  
-            />
-            {isSalesGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
-            <KeywordContainer>
-              <Keyword static><Line color="white"/>판매량</Keyword>
-            </KeywordContainer>
-          </Background>
-        </GraphContainer>}
-      </ContentsContainer>
+          {selectedKeywords &&
+           selectedKeywords.map((keyword, i) => (
+            <GraphContainer key={i}>
+              <ContentsTitle >{keyword}</ContentsTitle>
+              <Background
+                graph
+                title="클릭 시 이미지가 확대됩니다."
+                isClicked={selectedGraph === keyword}
+                onClick={() => setSelectedGraph(keyword)}
+              >
+                <Graph
+                  src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)} 
+                />
+                <OpenIcon size="24" />
+              </Background>
+            </GraphContainer>
+          ))}
+      </ContentsContainer>}
       {keywords &&
       <ContentsContainer>
         <AnalysisContainer>
@@ -197,13 +155,22 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
         </AnalysisContainer>
       </ContentsContainer>}
       <ButtonWrapper>
-          <Button
-            onClick={() => {
-              dispatch(setActivePage('keywords'));
-              setIsClicked(true);
-            }}
-          >키워드별 세부 분석 보기</Button>
-        </ButtonWrapper>
+        <Button
+          onClick={() => {
+            dispatch(setActivePage('keywords'));
+            setIsClicked(true);
+          }}
+        >키워드별 세부 분석 보기</Button>
+      </ButtonWrapper>
+      {selectedGraph !== "" &&
+      <PopUp
+        graph
+        isVisible={selectedGraph !== ""}
+        setIsVisible={setSelectedGraph}
+      >
+        <GraphTitle>{selectedGraph}</GraphTitle>
+        <Graph src={require(`../../assets/images/differencing/${folder}/${selectedGraph}.png`)}/>
+      </PopUp>}
     </PageContainer>
   )
 };

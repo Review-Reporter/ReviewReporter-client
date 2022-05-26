@@ -25,8 +25,8 @@ const Main = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
       case 'total_analysis':
-        setIsKeywordsVisible(false);
         dispatch(setKeyword(""));
+        setIsKeywordsVisible(false);
         window.scrollTo({ top: totalAnalysisRef.current.offsetTop - 20, behavior: 'smooth' });
         break;
       case 'keywords':

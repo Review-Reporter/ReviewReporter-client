@@ -22,7 +22,7 @@ export const TitleContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
   font-size: 1.5rem;
 `;
 
@@ -51,41 +51,10 @@ export const HighLight = styled.span`
 
 export const ContentsContainer = styled.div`
   display: flex;
+  justify-content: center;
+  flex-flow: wrap;
   width: 100%;
   margin-bottom: 2rem;
-`;
-
-export const KeywordContainer = styled.div`
-  text-align: center;
-  margin-top: 1rem;
-  padding: 0 1rem;
-`;
-
-export const Keyword = styled.span`
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.9rem;
-  margin: 0 0.5rem;
-
-  ${props => {
-    const isStatic = props.static;
-
-    if (isStatic) return null;
-    return css`
-      cursor: pointer;
-      &:hover { opacity: 0.8; };
-      &:active { opacity: 0.7 };
-    `
-  }};
-
-  color: ${props => props.isSelected ? "white" : "darkgray"};
-`;
-
-export const Line = styled.div`
-  width: 1rem;
-  height: 2px;
-  margin-right: 0.4rem;
-  background: ${props => props.color};
 `;
 
 export const ContentsTitle = styled.div`
@@ -96,6 +65,7 @@ export const ContentsTitle = styled.div`
 
 export const GraphContainer = styled.div`
   padding: 1rem;
+  font-size: 5vw;
 `;
 
 export const Graph = styled.img`
@@ -112,9 +82,12 @@ export const Background = styled.div`
   ${props =>
     props.graph &&
     css`
-      width: 100%;
+      width: 7.5em;
+      padding: 0;
       padding: 1rem;
       cursor: pointer;
+      &:hover { opacity: 0.8; };
+      &:active { opacity: 0.7 };
     `
   };
 `;
@@ -166,4 +139,12 @@ export const Button = styled.div`
 
   &:hover { opacity: 0.8; };
   &:active { opacity: 0.7 };
+`;
+
+export const GraphTitle = styled.h3`
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: -2rem;
 `;

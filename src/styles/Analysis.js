@@ -21,15 +21,13 @@ export const TitleContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const Category = styled.div`
-  font-size: 2.5rem;
-  font-weight: bold;
-  letter-spacing: 0.1rem;
+export const Title = styled.h3`
+  font-size: 1.5rem;
 `;
 
 export const InfoIcon = styled(AiOutlineInfoCircle)`
   color: lightgray;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   cursor: pointer;
 
   &:hover { opacity: 0.8; };
@@ -54,10 +52,15 @@ export const Graph = styled.img`
   width: 100%;
 `;
 
-export const Title = styled.div`
+export const ContentsTitle = styled.h3`
   font-size: 1.25rem;
   margin-bottom: 0.7rem;
   padding-left: 0.5rem;
+`;
+
+export const SubTitle = styled.span`
+  font-size: 1rem;
+  color: lightgray;
 `;
 
 export const Background = styled.div`

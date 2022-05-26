@@ -1,14 +1,15 @@
-import { useState, forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import {
   PageContainer,
   Keyword,
   TitleContainer,
-  Category,
+  Title,
   InfoIcon,
   ContentsContainer,
   GraphContainer,
   Graph,
-  Title,
+  ContentsTitle,
+  SubTitle,
   Background,
   CloseIcon,
   OpenIcon,
@@ -16,6 +17,7 @@ import {
 } from '../../styles/Analysis';
 
 const Analysis = ({ category, keyword }, ref) => {
+  const [folder, setFolder] = useState(null);
   const [isMentionGraphClicked, setIsMentionGraphClicked] = useState(false);
   const [isSalesGraphClicked, setIsSalesGraphClicked] = useState(false);
 
@@ -29,6 +31,12 @@ const Analysis = ({ category, keyword }, ref) => {
       setIsMentionGraphClicked(!isMentionGraphClicked);
     }
   }
+  
+  useEffect(() => {
+    let str = category;
+
+    setFolder(str.replace(/ /gi, ""));
+  }, [category]);
 
   if (!category || !keyword) return null;
   return (
@@ -36,25 +44,26 @@ const Analysis = ({ category, keyword }, ref) => {
       ref={ref}
     >
       <TitleContainer>
-        <Category>{category}</Category>      
+        <Title><Keyword>'{keyword}'</Keyword> 키워드 세부 분석</Title>     
         <InfoIcon size="24" />
       </TitleContainer>
       <ContentsContainer>
         {!isSalesGraphClicked &&
         <GraphContainer>
-          <Title><Keyword>'{keyword}'</Keyword> 언급량</Title>
+          <ContentsTitle>언급량</ContentsTitle>
           <Background
             graph
             isClicked={isMentionGraphClicked}
             onClick={() => onGraphClicked('mention')}
           >
-            <Graph src={require(`../../assets/images/mention/${category}/${keyword}.png`)} />
+            {folder && 
+            <Graph src={require(`../../assets/images/mention/${folder}/${keyword}.png`)} />}
             {isMentionGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
           </Background>
         </GraphContainer>}
         {!isMentionGraphClicked &&
         <GraphContainer>
-          <Title>판매량</Title>
+          <ContentsTitle>판매량</ContentsTitle>
           <Background
             graph
             isClicked={isSalesGraphClicked}
@@ -67,7 +76,7 @@ const Analysis = ({ category, keyword }, ref) => {
       </ContentsContainer>
       <ContentsContainer>
         <AnalysisContainer>
-          <Title>분석 결과</Title>
+          <ContentsTitle>분석 결과</ContentsTitle>
           <Background></Background>
         </AnalysisContainer>
       </ContentsContainer>
