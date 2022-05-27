@@ -34,7 +34,7 @@ const Main = () => {
         window.scrollTo({ top: keywordRef.current.offsetTop - 10, behavior: 'smooth' });
         break;
       case 'analysis':
-        window.scrollTo({ top: analysisRef.current.offsetTop - 20, behavior: 'smooth' });
+        window.scrollTo({ top: analysisRef.current.offsetTop - 10, behavior: 'smooth' });
         break
       default:
         return;

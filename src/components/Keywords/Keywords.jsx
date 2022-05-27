@@ -13,6 +13,7 @@ import {
   Image,
   KeywordContainer,
   WordCloudContainer,
+  ContentsTitle,
   RankContainer,
 } from '../../styles/Keywords';
 
@@ -78,6 +79,7 @@ const Keywords = ({ category }, ref) => {
         </KeywordContainer>
         {rank &&
         <RankContainer>
+          <ContentsTitle>워드 클라우드 순위</ContentsTitle>
           {rank.map((keyword, i) => (
             <Rank 
               key={i} 

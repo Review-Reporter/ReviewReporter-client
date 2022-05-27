@@ -12,6 +12,7 @@ export const PageContainer = styled.div`
   padding: 2rem;
   padding-bottom: 4rem;
   margin: 0 auto;
+  margin-top: 6rem;
   font-weight: 500;
 `;
 
@@ -23,6 +24,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h3`
+  font-weight: bold;
   font-size: 1.5rem;
 `;
 
@@ -63,6 +65,15 @@ export const ContentsTitle = styled.div`
   padding-left: 0.5rem;
 `;
 
+export const GraphTitle = styled.h3`
+  font-size: 1.25rem;
+  color: lightgray;
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
+  padding-left: 0.5rem;
+`;
+
 export const GraphContainer = styled.div`
   padding: 1rem;
   font-size: 5vw;
@@ -83,6 +94,7 @@ export const Background = styled.div`
     props.graph &&
     css`
       width: 7.5em;
+      max-width: 36rem;
       padding: 0;
       padding: 1rem;
       cursor: pointer;
@@ -93,16 +105,6 @@ export const Background = styled.div`
 `;
 
 export const CloseIcon = styled(IoCloseOutline)`
-  color: darkgray;
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  cursor: pointer;
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
-`;
-
-export const OpenIcon = styled(AiOutlinePlusCircle)`
   color: darkgray;
   position: absolute;
   top: 0.5rem;
@@ -141,10 +143,3 @@ export const Button = styled.div`
   &:active { opacity: 0.7 };
 `;
 
-export const GraphTitle = styled.h3`
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 1.5rem;
-  margin-bottom: -2rem;
-`;

@@ -12,6 +12,7 @@ export const PageContainer = styled.div`
   margin: 0 auto;
   font-weight: 500;
   margin-bottom: 2rem;
+  margin-top: 6rem;
 `;
 
 export const TitleContainer = styled.div`
@@ -22,6 +23,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h3`
+  font-weight: bold;
   font-size: 1.5rem;
 `;
 
@@ -42,6 +44,15 @@ export const ContentsContainer = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 2rem;
+`;
+
+export const GraphTitle = styled.h3`
+  font-size: 1.25rem;
+  color: lightgray;
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
+  padding-left: 0.5rem;
 `;
 
 export const GraphContainer = styled.div`

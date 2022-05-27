@@ -6,6 +6,7 @@ import {
   Title,
   InfoIcon,
   ContentsContainer,
+  GraphTitle,
   GraphContainer,
   Graph,
   ContentsTitle,
@@ -50,29 +51,32 @@ const Analysis = ({ category, keyword }, ref) => {
       <ContentsContainer>
         {!isSalesGraphClicked &&
         <GraphContainer>
-          <ContentsTitle>언급량</ContentsTitle>
           <Background
             graph
             isClicked={isMentionGraphClicked}
             onClick={() => onGraphClicked('mention')}
           >
+            <GraphTitle>언급량</GraphTitle>
             {folder && 
             <Graph src={require(`../../assets/images/mention/${folder}/${keyword}.png`)} />}
-            {isMentionGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
           </Background>
         </GraphContainer>}
         {!isMentionGraphClicked &&
         <GraphContainer>
-          <ContentsTitle>판매량</ContentsTitle>
           <Background
             graph
             isClicked={isSalesGraphClicked}
             onClick={() => onGraphClicked('sales')}
           >
+            <GraphTitle>판매량</GraphTitle>
             <Graph src={require(`../../assets/images/sales/${category}_sales.png`)} />
-            {isSalesGraphClicked ? <CloseIcon size="30" /> : <OpenIcon size="24" />}
           </Background>
         </GraphContainer>}
+      </ContentsContainer>
+      <ContentsContainer>
+        <GraphContainer>
+          <ContentsTitle>차분된 그래프 <SubTitle>- 설명</SubTitle></ContentsTitle>
+        </GraphContainer>
       </ContentsContainer>
       <ContentsContainer>
         <AnalysisContainer>

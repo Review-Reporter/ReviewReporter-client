@@ -108,17 +108,16 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
           {selectedKeywords &&
            selectedKeywords.map((keyword, i) => (
             <GraphContainer key={i}>
-              <ContentsTitle >{keyword}</ContentsTitle>
               <Background
                 graph
                 title="클릭 시 이미지가 확대됩니다."
                 isClicked={selectedGraph === keyword}
                 onClick={() => setSelectedGraph(keyword)}
               >
+                <GraphTitle >{keyword}</GraphTitle>
                 <Graph
                   src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)} 
                 />
-                <OpenIcon size="24" />
               </Background>
             </GraphContainer>
           ))}

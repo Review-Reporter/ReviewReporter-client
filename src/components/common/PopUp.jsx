@@ -29,9 +29,9 @@ const PopUpContainer = styled.div`
     if (!props.isGraph) return;
     
     return css`
-      background: black;
+      background: ${props.theme.dark_bg_color};
       width: 100%;
-      max-width: 1280px;
+      max-width: 1200px;
       height: auto;
       margin: 1rem;
     `
@@ -54,6 +54,8 @@ const CloseIcon = styled(IoCloseOutline)`
     
     return css`
       color: white;
+      top: 0.5rem;
+      right: 0.7rem;
     `
   }}
 `;

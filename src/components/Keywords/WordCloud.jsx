@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components';
 const WordCloudContainer = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
 `;
 
 const WordBox = styled.div`
@@ -13,7 +14,7 @@ const WordBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.6em;
+  width: 3em;
   max-width: 180px;
   text-align: center;
   height: 66px;
@@ -52,13 +53,13 @@ const Word = styled.div`
 `;
 
 const ImgArea = styled.div`
-  width: 37%;
+  width: 30%;
 `;
 
 const DataContainer = styled.div`
   position: relative;
   width: 32%;
-  margin-top: -3rem;
+  margin-top: -4rem;
   max-width: 20rem;
 
   @media screen and (min-width: 1240px) {
@@ -68,10 +69,10 @@ const DataContainer = styled.div`
 
 const position = {
   top: {
-    0: [0, 1, 8, 11, 17],
-    1: [0, 4, 8, 11, 17],
-    2: [0, 2, 8, 12, 17],
-    3: [0, 4, 7, 10, 15]
+    0: [0, 1, 7, 10, 13],
+    1: [0, 3, 6, 10, 13],
+    2: [0, 2, 8, 11, 13],
+    3: [0, 4, 7, 11, 12]
   },
   left: {
     0: [-2, 10, 0, 7, 4],
