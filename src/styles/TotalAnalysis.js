@@ -60,7 +60,7 @@ export const ContentsContainer = styled.div`
 `;
 
 export const ContentsTitle = styled.div`
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 0.7rem;
   padding-left: 0.5rem;
 `;

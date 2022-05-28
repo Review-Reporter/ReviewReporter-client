@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from 'react';
+import PopUp from '../common/PopUp';
 import {
   PageContainer,
   Keyword,
@@ -17,22 +18,31 @@ import {
   AnalysisContainer
 } from '../../styles/Analysis';
 
+
 const Analysis = ({ category, keyword }, ref) => {
   const [folder, setFolder] = useState(null);
-  const [isMentionGraphClicked, setIsMentionGraphClicked] = useState(false);
-  const [isSalesGraphClicked, setIsSalesGraphClicked] = useState(false);
-
-  const onGraphClicked = (value) => {
-    if (value === 'sales') {
-      setIsSalesGraphClicked(!isSalesGraphClicked);
-      setIsMentionGraphClicked(false);
+  const [selectedGraph, setSelectedGraph] = useState('');
+  
+  const handlePopUpBackground = (isVisible) => {
+    if (isVisible) {
+      document.body.style.cssText = `
+        position: fixed;
+        top: -${window.pageYOffset}px;
+        overflow-y: scroll;
+        width: 100%;
+      `
     }
     else {
-      setIsSalesGraphClicked(false);
-      setIsMentionGraphClicked(!isMentionGraphClicked);
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = '';
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     }
   }
-  
+
+  useEffect(() => {
+    if (folder) handlePopUpBackground(selectedGraph);
+  }, [selectedGraph])
+
   useEffect(() => {
     let str = category;
 
@@ -49,33 +59,36 @@ const Analysis = ({ category, keyword }, ref) => {
         <InfoIcon size="24" />
       </TitleContainer>
       <ContentsContainer>
-        {!isSalesGraphClicked &&
         <GraphContainer>
           <Background
             graph
-            isClicked={isMentionGraphClicked}
-            onClick={() => onGraphClicked('mention')}
+            onClick={() => setSelectedGraph('언급량')}
           >
             <GraphTitle>언급량</GraphTitle>
             {folder && 
             <Graph src={require(`../../assets/images/mention/${folder}/${keyword}.png`)} />}
           </Background>
-        </GraphContainer>}
-        {!isMentionGraphClicked &&
+        </GraphContainer>
         <GraphContainer>
           <Background
             graph
-            isClicked={isSalesGraphClicked}
-            onClick={() => onGraphClicked('sales')}
+            title="클릭 시 이미지가 확대됩니다."
+            onClick={() => setSelectedGraph('판매량')}
           >
             <GraphTitle>판매량</GraphTitle>
-            <Graph src={require(`../../assets/images/sales/${category}_sales.png`)} />
+            <Graph src={require(`../../assets/images/sales/${category}.png`)} />
           </Background>
-        </GraphContainer>}
-      </ContentsContainer>
-      <ContentsContainer>
+        </GraphContainer>
         <GraphContainer>
-          <ContentsTitle>차분된 그래프 <SubTitle>- 설명</SubTitle></ContentsTitle>
+          <Background
+            graph
+            title="클릭 시 이미지가 확대됩니다."
+            onClick={() => setSelectedGraph('차분된 그래프')}
+          >
+            <GraphTitle>차분된 그래프 <SubTitle>- 설명</SubTitle></GraphTitle>
+            {folder &&
+             <Graph src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)}/>}
+          </Background>
         </GraphContainer>
       </ContentsContainer>
       <ContentsContainer>
@@ -84,6 +97,22 @@ const Analysis = ({ category, keyword }, ref) => {
           <Background></Background>
         </AnalysisContainer>
       </ContentsContainer>
+      {selectedGraph &&
+      <PopUp
+        graph
+        isVisible={selectedGraph !== ""}
+        setIsVisible={setSelectedGraph}
+      >
+        <GraphTitle>{selectedGraph}</GraphTitle>
+        {folder &&
+         selectedGraph === '언급량' &&
+         <Graph src={require(`../../assets/images/mention/${folder}/${keyword}.png`)} />}
+        {selectedGraph === '판매량' &&
+         <Graph src={require(`../../assets/images/sales/${category}.png`)} />}
+        {folder &&
+         selectedGraph === '차분된 그래프' &&
+         <Graph src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)}/>}
+      </PopUp>}
     </PageContainer>
   )
 };

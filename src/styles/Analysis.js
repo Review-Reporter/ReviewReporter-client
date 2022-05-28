@@ -42,6 +42,8 @@ export const Keyword = styled.span`
 
 export const ContentsContainer = styled.div`
   display: flex;
+  justify-content: center;
+  flex-flow: wrap;
   width: 100%;
   margin-bottom: 2rem;
 `;
@@ -57,6 +59,7 @@ export const GraphTitle = styled.h3`
 
 export const GraphContainer = styled.div`
   padding: 1rem;
+  font-size: 5vw;
 `;
 
 export const Graph = styled.img`
@@ -64,7 +67,7 @@ export const Graph = styled.img`
 `;
 
 export const ContentsTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 0.7rem;
   padding-left: 0.5rem;
 `;
@@ -83,9 +86,13 @@ export const Background = styled.div`
   ${props =>
     props.graph &&
     css`
-      width: 100%;
+      width: 7.5em;
+      max-width: 36rem;
+      padding: 0;
       padding: 1rem;
       cursor: pointer;
+      &:hover { opacity: 0.8; };
+      &:active { opacity: 0.7 };
     `
   };
 `;

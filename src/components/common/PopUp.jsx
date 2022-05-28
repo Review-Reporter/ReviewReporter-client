@@ -26,7 +26,7 @@ const PopUpContainer = styled.div`
   border-radius: 0.2rem;
 
   ${props => {
-    if (!props.isGraph) return;
+    if (!props.is_graph) return;
     
     return css`
       background: ${props.theme.dark_bg_color};
@@ -50,7 +50,7 @@ const CloseIcon = styled(IoCloseOutline)`
   }
 
   ${props => {
-    if (!props.isGraph) return;
+    if (!props.is_graph) return;
     
     return css`
       color: white;
@@ -60,7 +60,7 @@ const CloseIcon = styled(IoCloseOutline)`
   }}
 `;
 
-const Text = styled.p`
+const Text = styled.div`
   font-size: 1rem;
   color: #666666;
   line-height: 1.4;
@@ -73,11 +73,11 @@ const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
   return (
     <Background>
       <PopUpContainer
-        isGraph={graph}
+        is_graph={graph}
       >
         <CloseIcon size="30"
           title="클릭 시 이미지가 축소됩니다."
-          isGraph={graph}
+          is_graph={graph}
           onClick={()=>setIsVisible("")}
         />
         <Text>{children}</Text>
