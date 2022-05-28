@@ -62,8 +62,8 @@ const DataContainer = styled.div`
   margin-top: -4rem;
   max-width: 20rem;
 
-  @media screen and (min-width: 1240px) {
-    font-size: 3.8rem;
+  @media screen and (min-width: 1000px) {
+    font-size: 3.1rem;
   }
 `;
 
@@ -76,7 +76,7 @@ const position = {
   },
   left: {
     0: [-2, 10, 0, 7, 4],
-    1: [10, 0, 7, 3, 9],
+    1: [10, -2, 7, 3, 9],
     2: [10, -2, 8, 3, 9],
     3: [10, -2, 7, 10, 3]
   }

@@ -40,7 +40,7 @@ const Keyword = styled.div`
 
 const RectBackground = styled.div`
   background: ${props => props.theme.light_bg_color};
-  width: 10rem;
+  width: 9rem;
   height: 2.2rem;
   padding: 0.6rem;
   padding-left: 2rem;

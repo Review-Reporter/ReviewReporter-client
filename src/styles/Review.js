@@ -5,7 +5,7 @@ export const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 1280px;
+  max-width: 1080px;
   padding: 2rem;
   margin: 0 auto;
   font-weight: 500;

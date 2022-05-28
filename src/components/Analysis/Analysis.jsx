@@ -21,6 +21,7 @@ import {
 
 const Analysis = ({ category, keyword }, ref) => {
   const [folder, setFolder] = useState(null);
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [selectedGraph, setSelectedGraph] = useState('');
   
   const handlePopUpBackground = (isVisible) => {
@@ -41,7 +42,11 @@ const Analysis = ({ category, keyword }, ref) => {
 
   useEffect(() => {
     if (folder) handlePopUpBackground(selectedGraph);
-  }, [selectedGraph])
+  }, [selectedGraph]);
+
+  useEffect(() => {
+    if (folder) handlePopUpBackground(isInfoVisible);
+  }, [isInfoVisible]);
 
   useEffect(() => {
     let str = category;
@@ -56,7 +61,13 @@ const Analysis = ({ category, keyword }, ref) => {
     >
       <TitleContainer>
         <Title><Keyword>'{keyword}'</Keyword> 키워드 세부 분석</Title>     
-        <InfoIcon size="24" />
+        <InfoIcon size="24" onClick={() => setIsInfoVisible(true)}/>
+        <PopUp
+          isVisible={isInfoVisible}
+          setIsVisible={setIsInfoVisible}
+        > 
+    
+        </PopUp>
       </TitleContainer>
       <ContentsContainer>
         <GraphContainer>
@@ -83,9 +94,9 @@ const Analysis = ({ category, keyword }, ref) => {
           <Background
             graph
             title="클릭 시 이미지가 확대됩니다."
-            onClick={() => setSelectedGraph('차분된 그래프')}
+            onClick={() => setSelectedGraph('분석 그래프')}
           >
-            <GraphTitle>차분된 그래프 <SubTitle>- 설명</SubTitle></GraphTitle>
+            <GraphTitle>분석 그래프 <SubTitle>- 설명</SubTitle></GraphTitle>
             {folder &&
              <Graph src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)}/>}
           </Background>
@@ -110,7 +121,7 @@ const Analysis = ({ category, keyword }, ref) => {
         {selectedGraph === '판매량' &&
          <Graph src={require(`../../assets/images/sales/${category}.png`)} />}
         {folder &&
-         selectedGraph === '차분된 그래프' &&
+         selectedGraph === '분석 그래프' &&
          <Graph src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)}/>}
       </PopUp>}
     </PageContainer>
