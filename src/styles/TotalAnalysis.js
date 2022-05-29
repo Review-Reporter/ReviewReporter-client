@@ -143,3 +143,10 @@ export const Button = styled.div`
   &:active { opacity: 0.7 };
 `;
 
+export const SummaryTitle = styled.div`
+  font-size: 1.3rem;
+  color: ${props => props.theme.sub_color};
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.7rem;
+`;

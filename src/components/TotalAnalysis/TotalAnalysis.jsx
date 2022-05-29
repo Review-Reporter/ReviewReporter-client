@@ -1,6 +1,7 @@
 import { useState, forwardRef, useEffect } from 'react';
 import PopUp from '../common/PopUp';
 import DataAPI from '../../api/DataAPI';
+import AnalysisData from '../../assets/data/total_analysis_data.json';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/data';
 import {
@@ -14,11 +15,11 @@ import {
   GraphContainer,
   Graph,
   Background,
-  OpenIcon,
   AnalysisContainer,
   TextContainer,
   Text,
   HighLight,
+  SummaryTitle,
   ButtonWrapper,
   Button,
   GraphTitle
@@ -32,7 +33,7 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
   const [keywords, setKeywords] = useState([]);
   const dispatch = useDispatch();
 
-  const keywordsText = () => {
+  const keywordsText = (keywords) => {
     let text = '';
 
     for (let keyword of keywords) {
@@ -40,6 +41,18 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
     }
 
     return text.slice(0, -1)
+  }
+
+  const analysisText = (category) => {
+    const array = [];
+    const category_analysis = AnalysisData[category];
+
+    for (let data of category_analysis["comment"]) {
+      let elem = <Text dangerouslySetInnerHTML={{ __html: data}}></Text>
+      array.push(elem);
+    }
+
+    return array;
   }
 
   const handlePopUpBackground = (isVisible) => {
@@ -130,25 +143,26 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
             <TextContainer>
               <Text>
                 {category} 카테고리 리뷰 가운데, 출현 빈도수 기준 상위 10개의 키워드는 
-                <HighLight>{keywordsText()}</HighLight>로 추출되었습니다.
+                <HighLight>{keywordsText(keywords)}</HighLight>로 추출되었습니다.
               </Text>
               <Text>
                 이 중에서 
                 <HighLight> 판매량의 변화에 영향</HighLight>을 미친 것으로 판단되는 키워드는 
-                <HighLight> '학교', '학생'</HighLight>으로 분석되었습니다.
+                <HighLight> {keywordsText(selectedKeywords)}</HighLight>으로 분석되었습니다.
               </Text>
-              <Text>
-                학교, 학생과 같은 키워드가 영향을 미치는 것으로 보아 
-                <HighLight> 학교가 개학하는 시기에 판매량이 증가</HighLight>하는 것을 파악할 수 있습니다.
-              </Text>
-              <Text>
-                또한 학교나 학생의 언급량이 증가한 시점으로부터 2개월 뒤 판매량이 집중되는 것을 보아, 
-              </Text>
-              <Text>
-                <HighLight>추천 마켓팅 전략</HighLight>은
-                <br/>
-                <HighLight>추천 마켓팅 시기</HighLight>는
-              </Text>
+              {analysisText(category)}
+            </TextContainer>
+          </Background>
+          <Background style={{marginTop: '1rem'}}>
+            <TextContainer>
+              <SummaryTitle>추천 마케팅 전략</SummaryTitle>
+              <Text dangerouslySetInnerHTML={{ __html: AnalysisData[category]['summary'][0] }}></Text>
+            </TextContainer>
+          </Background>
+          <Background style={{marginTop: '1rem'}}>
+            <TextContainer>
+              <SummaryTitle>추천 마케팅 시기</SummaryTitle>
+              <Text dangerouslySetInnerHTML={{ __html: AnalysisData[category]['summary'][1] }}></Text>
             </TextContainer>
           </Background>
         </AnalysisContainer>

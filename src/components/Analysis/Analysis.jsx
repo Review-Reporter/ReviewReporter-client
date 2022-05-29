@@ -66,7 +66,10 @@ const Analysis = ({ category, keyword }, ref) => {
           isVisible={isInfoVisible}
           setIsVisible={setIsInfoVisible}
         > 
-    
+          <span style={{fontWeight: 'bold'}}>p-value란?</span><br/>
+          <t/>Granger Causality TEST의 검정 값.<br/><br/>
+          <li>0.05 &lt; p-value일 경우, 인과관계를 따르지 않음.<br/></li>
+          <li>0.05 &gt; p-value일 경우, 인과관계를 따름.</li>
         </PopUp>
       </TitleContainer>
       <ContentsContainer>
