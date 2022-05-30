@@ -42,7 +42,7 @@ const RectBackground = styled.div`
   background: ${props => props.theme.light_bg_color};
   width: 9rem;
   height: 2.2rem;
-  padding: 0.6rem;
+  padding: 0.5rem;
   padding-left: 2rem;
   margin-left: -1rem;
   font-size: 1.25rem;

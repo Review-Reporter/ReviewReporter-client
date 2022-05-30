@@ -12,7 +12,7 @@ export const PageContainer = styled.div`
   font-weight: 500;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
   font-weight: bold;
   font-size: 1.5rem;
   width: 100%;
