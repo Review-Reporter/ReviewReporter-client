@@ -32,10 +32,11 @@ const WordBox = styled.div`
 
 const Word = styled.div`
   display: inline-block;
+  font-weight: bold;
   width: 100%;
   font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
   color: ${props => props.theme[props.color]};
-  font-family: ${props => props.theme.fonts.title};
+
   
   cursor: pointer;
   &:hover { 

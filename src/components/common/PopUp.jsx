@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setIsPopUpVisible } from '../../modules/data';
 import { IoCloseOutline } from 'react-icons/io5'
 
 const Background = styled.div`
@@ -51,7 +54,6 @@ const CloseIcon = styled(IoCloseOutline)`
 
   ${props => {
     if (!props.is_graph) return;
-    
     return css`
       color: white;
       top: 0.5rem;
@@ -69,6 +71,21 @@ const Text = styled.div`
 `;
 
 const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
+  const dispatch = useDispatch();
+
+  const handleOpenPopUp = () => {
+    dispatch(setIsPopUpVisible(true));
+  }
+
+  const handleClosePopUp = () => {
+    setIsVisible("");
+    dispatch(setIsPopUpVisible(false));
+  }
+
+  useEffect(() => {
+    if (isVisible) handleOpenPopUp();
+  }, [isVisible]);
+  
   if (!isVisible) return null;
   return (
     <Background>
@@ -78,7 +95,7 @@ const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
         <CloseIcon size="30"
           title="클릭 시 이미지가 축소됩니다."
           is_graph={graph}
-          onClick={()=>setIsVisible("")}
+          onClick={handleClosePopUp}
         />
         <Text>{children}</Text>
       </PopUpContainer>

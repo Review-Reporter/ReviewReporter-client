@@ -19,7 +19,7 @@ import {
 } from '../../styles/Analysis';
 
 
-const Analysis = ({ category, keyword }, ref) => {
+const Analysis = ({ category, keyword, setPageOffset }, ref) => {
   const [folder, setFolder] = useState(null);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [selectedGraph, setSelectedGraph] = useState('');
@@ -39,6 +39,22 @@ const Analysis = ({ category, keyword }, ref) => {
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     }
   }
+
+  useEffect(() => {
+    if (!ref) return;
+
+    const calculateOffset = () => {
+      const offsetBottom = ref.current.offsetTop + ref.current.offsetHeight;
+      
+      setPageOffset(offsetBottom);
+    }
+
+    calculateOffset();
+    window.addEventListener('resize', calculateOffset);
+    return () => {
+      window.removeEventListener('resize', calculateOffset);
+    }
+  }, []);
 
   useEffect(() => {
     if (folder) handlePopUpBackground(selectedGraph);

@@ -25,9 +25,9 @@ import {
   GraphTitle
 } from '../../styles/TotalAnalysis';
 
-const TotalAnalysis = ({ category, setIsClicked }, ref) => {
+const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
   const [folder, setFolder] = useState(null);
-  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [isInfoVisible, setIsInfoVisible] = useState(null);
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [selectedGraph, setSelectedGraph] = useState('');
   const [keywords, setKeywords] = useState([]);
@@ -47,11 +47,11 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
     const array = [];
     const category_analysis = AnalysisData[category];
 
-    for (let data of category_analysis["comment"]) {
-      let elem = <Text dangerouslySetInnerHTML={{ __html: data}}></Text>
+    category_analysis['comment'].map((data, i) => {
+      let elem = <Text key={i} dangerouslySetInnerHTML={{ __html: data}}></Text>
       array.push(elem);
-    }
-
+    });
+    
     return array;
   }
 
@@ -70,6 +70,22 @@ const TotalAnalysis = ({ category, setIsClicked }, ref) => {
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     }
   }
+
+  useEffect(() => {
+    if (!ref) return;
+
+    const calculateOffset = () => {
+      const offsetBottom = ref.current.offsetTop + ref.current.offsetHeight;
+      
+      setPageOffset(offsetBottom);
+    }
+
+    calculateOffset();
+    window.addEventListener('resize', calculateOffset);
+    return () => {
+      window.removeEventListener('resize', calculateOffset);
+    }
+  }, []);
 
   useEffect(() => {
     handlePopUpBackground(isInfoVisible);
