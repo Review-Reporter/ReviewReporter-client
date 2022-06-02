@@ -115,7 +115,7 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
             title="클릭 시 이미지가 확대됩니다."
             onClick={() => setSelectedGraph('분석 그래프')}
           >
-            <GraphTitle>분석 그래프 <SubTitle>- 설명</SubTitle></GraphTitle>
+            <GraphTitle>분석 그래프</GraphTitle>
             {folder &&
              <Graph src={require(`../../assets/images/differencing/${folder}/${keyword}.png`)}/>}
           </Background>
