@@ -35,7 +35,7 @@ const ReviewText = ({ isOpen, setIsFoldVisible, children, currentPage, reviewKey
 
   useEffect(() => {
     handleResize();
-  }, [currentPage, reviewKeyword]);
+  }, [children]);
 
   return (
     <Text
