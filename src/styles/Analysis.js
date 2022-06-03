@@ -97,6 +97,26 @@ export const Background = styled.div`
   };
 `;
 
+export const Text = styled.p`
+  color: ${ props => props.theme.sub_text_color };
+  font-size: 1.1rem;
+  line-height: 1.3;
+`;
+
+export const List = styled.li`
+
+`;
+
+export const Value = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+`;
+
+export const HighLight = styled.span`
+  color: ${props => props.theme.sub_color};
+`;
+
 export const CloseIcon = styled(IoCloseOutline)`
   color: darkgray;
   position: absolute;

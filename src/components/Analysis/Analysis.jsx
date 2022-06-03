@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from 'react';
+import DataAPI from '../../api/DataAPI';
 import PopUp from '../common/PopUp';
 import {
   PageContainer,
@@ -11,16 +12,20 @@ import {
   GraphContainer,
   Graph,
   ContentsTitle,
-  SubTitle,
+  Text,
+  List,
+  Value,
+  HighLight,
   Background,
-  CloseIcon,
-  OpenIcon,
   AnalysisContainer
 } from '../../styles/Analysis';
 
 
 const Analysis = ({ category, keyword, setPageOffset }, ref) => {
   const [folder, setFolder] = useState(null);
+  const [pValue, setPValue] = useState(null);
+  const [lag, setLag] = useState(0);
+  const [isRelated, setIsRelated] = useState(false);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [selectedGraph, setSelectedGraph] = useState('');
   
@@ -41,9 +46,8 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
   }
 
   useEffect(() => {
-    if (!ref) return;
-
     const calculateOffset = () => {
+      if (!ref) return;
       const offsetBottom = ref.current.offsetTop + ref.current.offsetHeight;
       
       setPageOffset(offsetBottom);
@@ -55,6 +59,18 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
       window.removeEventListener('resize', calculateOffset);
     }
   }, []);
+
+  useEffect(() => {
+    const getAnalysisData = async() => {
+      const result = await DataAPI.getAnalysis(category, keyword);
+
+      setPValue(result.p_value);
+      setLag(result.lag_value);
+      setIsRelated(result.isRelated);
+    }
+
+    getAnalysisData();
+  }, [keyword]);
 
   useEffect(() => {
     if (folder) handlePopUpBackground(selectedGraph);
@@ -124,7 +140,19 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
       <ContentsContainer>
         <AnalysisContainer>
           <ContentsTitle>분석 결과</ContentsTitle>
-          <Background></Background>
+          {lag &&
+           pValue &&
+           keyword &&
+           <Background>
+             <Value>
+              <List>p-value : {pValue}</List>
+              <List>lag : {lag}</List>
+             </Value>
+             <Text>
+              <HighLight>'{keyword}'</HighLight>의 언급량과 판매량의 증감 추이를 비교하여 {lag}의 간격으로 조정을 가했을 때 가장 유사할 것으로 분석되었으{isRelated ? "며" : "나"},
+              인과 검정 결과 <HighLight>{pValue}</HighLight>의 값으로 <HighLight style={{ fontWeight: 'bold' }}>인과 관계가 {isRelated ? "있습니다" : "없습니다"}.</HighLight>
+            </Text>
+          </Background>}
         </AnalysisContainer>
       </ContentsContainer>
       {selectedGraph &&
