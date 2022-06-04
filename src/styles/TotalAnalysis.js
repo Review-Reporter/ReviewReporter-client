@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { AiOutlineInfoCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { IoCloseOutline } from 'react-icons/io5'
 
 export const PageContainer = styled.div`
