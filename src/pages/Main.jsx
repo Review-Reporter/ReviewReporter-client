@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setKeyword, setActivePage, setIsKeywordsVisible, setScrollPage } from '../modules/data';
 import TotalAnalysis from '../components/TotalAnalysis/TotalAnalysis';
@@ -66,7 +66,7 @@ const Main = () => {
         if (pageYOffset > totalAnalysisOffset && pageYOffset <= keywordsOffset) 
           dispatch(setScrollPage("keywords"));
       if (analysisOffset >= 0)
-        if (pageYOffset > keywordsOffset&& pageYOffset <= analysisOffset) 
+        if (pageYOffset > keywordsOffset && pageYOffset <= analysisOffset) 
           dispatch(setScrollPage("analysis"));
       if (reviewOffset >= 0) {
         if (pageYOffset > analysisOffset) 

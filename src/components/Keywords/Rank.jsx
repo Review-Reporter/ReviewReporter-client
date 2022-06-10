@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setKeyword, setActivePage } from '../../modules/data';
@@ -31,6 +32,7 @@ const Num = styled.div`
   line-height: 2.4rem;
   text-align: center;
   font-weight: bold;
+  font-family: ${props => props.theme.fonts.title};
 `;
 
 const Keyword = styled.div`
