@@ -100,9 +100,12 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
   }, [selectedGraph])
 
   useEffect(() => {
-    const getSelectedKeywordData = async() => {
-      const result = await DataAPI.getSelectedKeyword(category);
-      setSelectedKeywords(result);
+    const getSelectedKeywordData = () => {
+      DataAPI.getSelectedKeyword(category)
+      .then(res => {
+        setSelectedKeywords(res);
+        setLoading(false)
+      })
     }
 
     const getKeywordData = () => {
@@ -116,9 +119,8 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
 
     setLoading(true);
     setSelectedKeywords('');
-    getSelectedKeywordData();
     getKeywordData();
-    setLoading(false);
+    getSelectedKeywordData()
     setFolder(getFolderName());
   }, [category])
 

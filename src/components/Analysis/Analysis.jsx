@@ -71,11 +71,12 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
         setPValue2(res.p_value2);
         setLag(res.lag_value);
         setIsRelated(res.isRelated);
+
+        setLoading(false)
       })
     }
     setLoading(true);
-    getAnalysisData()
-    .then(() => setLoading(false));
+    getAnalysisData();
   }, [keyword]);
 
   useEffect(() => {
