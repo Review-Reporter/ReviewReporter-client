@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { setIsPopUpVisible } from '../../modules/data';
+import { setIsPopUpVisible } from '../../modules/page';
 import { IoCloseOutline } from 'react-icons/io5'
 
 const Background = styled.div`

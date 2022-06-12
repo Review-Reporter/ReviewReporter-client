@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setActivePage } from '../../modules/data';
+import { setActivePage } from '../../modules/page';
 import styled from 'styled-components';
 
 const HeaderArea = styled.div`

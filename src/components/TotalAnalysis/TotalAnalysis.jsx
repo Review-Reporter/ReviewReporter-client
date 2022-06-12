@@ -1,10 +1,11 @@
 import React, { useState, forwardRef, useEffect } from 'react';
 import Loading from '../common/Loading';
 import PopUp from '../common/PopUp';
-import DataAPI from '../../api/DataAPI';
+import DataAPI from '../../lib/api/DataAPI';
 import AnalysisData from '../../assets/data/total_analysis_data.json';
-import { useDispatch } from 'react-redux';
-import { setActivePage } from '../../modules/data';
+import { useDispatch, useSelector } from 'react-redux';
+import { getKeywordsObj } from '../../modules/data';
+import { setActivePage } from '../../modules/page';
 import {
   PageContainer,
   TitleContainer,
@@ -33,6 +34,7 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [selectedGraph, setSelectedGraph] = useState('');
   const [keywords, setKeywords] = useState([]);
+  const { keywordsObj } = useSelector(state => state.data);
   const dispatch = useDispatch();
 
   const keywordsText = (keywords) => {
@@ -103,10 +105,8 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
       setSelectedKeywords(result);
     }
 
-    const getKeywordData = async() => {
-      const data = await DataAPI.getKeyword(category);
-
-      setKeywords(Object.keys(data));
+    const getKeywordData = () => {
+      dispatch(getKeywordsObj(category));
     }
 
     const getFolderName = () => {
@@ -117,10 +117,14 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
     setLoading(true);
     setSelectedKeywords('');
     getSelectedKeywordData();
-    getKeywordData()
-    .then(() => setLoading(false))
+    getKeywordData();
+    setLoading(false);
     setFolder(getFolderName());
   }, [category])
+
+  useEffect(() => {
+    if (keywordsObj) setKeywords(Object.keys(keywordsObj));
+  }, [keywordsObj]);
   
   return (
     <PageContainer

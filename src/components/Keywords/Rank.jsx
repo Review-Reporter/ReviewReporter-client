@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { setKeyword, setActivePage } from '../../modules/data';
+import { setKeyword } from '../../modules/data';
+import { setActivePage } from '../../modules/page';
 
 const RankContainer = styled.div`
   display: flex;

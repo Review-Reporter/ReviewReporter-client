@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 import Loading from '../common/Loading';
-import DataAPI from '../../api/DataAPI';
+import DataAPI from '../../lib/api/DataAPI';
 import ReviewContents from './ReviewContents';
 import Tag from './Tag';
 import Pagination from './Pagination';
@@ -21,6 +22,7 @@ const Review = ({ category, keyword, setPageOffset }, ref) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [offset, setOffset] = useState(-1);
   const [contents, setContents] = useState(null);
+  const { keywordsObj } = useSelector(state => state.data);
   const totalPage = useRef(0);
   const limit = useRef(10);
 
@@ -67,14 +69,8 @@ const Review = ({ category, keyword, setPageOffset }, ref) => {
   }, []);
   
   useEffect(() => {
-    const getKeywordData = async() => {
-      const result = await DataAPI.getKeyword(category);
-
-      setKeywords(Object.keys(result));
-    }
-
-    getKeywordData();
-  }, []);
+    if(keywordsObj) setKeywords(Object.keys(keywordsObj));
+  }, [keywordsObj]);
 
   useEffect(() => {
     const getReviewData = async() => {

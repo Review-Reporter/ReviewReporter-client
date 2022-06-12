@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef } from 'react';
 import Loading from '../common/Loading';
-import DataAPI from '../../api/DataAPI';
+import DataAPI from '../../lib/api/DataAPI';
 import PopUp from '../common/PopUp';
 import {
   PageContainer,
@@ -64,13 +64,14 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
   }, []);
 
   useEffect(() => {
-    const getAnalysisData = async() => {
-      const result = await DataAPI.getAnalysis(category, keyword);
-
-      setPValue1(result.p_value1);
-      setPValue2(result.p_value2);
-      setLag(result.lag_value);
-      setIsRelated(result.isRelated);
+    const getAnalysisData = () => {
+      DataAPI.getAnalysis(category, keyword)
+      .then(res => {
+        setPValue1(res.p_value1);
+        setPValue2(res.p_value2);
+        setLag(res.lag_value);
+        setIsRelated(res.isRelated);
+      })
     }
     setLoading(true);
     getAnalysisData()

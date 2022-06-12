@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import Loading from '../common/Loading';
-import DataAPI from '../../api/DataAPI';
+import DataAPI from '../../lib/api/DataAPI';
+import { useSelector } from 'react-redux';
 import toteBag from '../../assets/images/product/toteBag.png';
 import backpack from '../../assets/images/product/backpack.png';
 import WordCloud from './WordCloud';
@@ -23,6 +24,7 @@ const Keywords = ({ category, setPageOffset }, ref) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [rank, setRank] = useState(null);
+  const { keywordsObj } = useSelector(state => state.data);
 
   const calculateRank = (data) => {
     let keys = Object.keys(data);
@@ -63,16 +65,13 @@ const Keywords = ({ category, setPageOffset }, ref) => {
   }, []);
 
   useEffect(() => {
-    const getKeywordData = async() => {
-      const result = await DataAPI.getKeyword(category);
-      setData(result);
-      calculateRank(result);
-    }
+    if (!keywordsObj) return null;
 
     setLoading(true)
-    getKeywordData()
-    .then(() => setLoading(false));
-  }, [category]);
+    setData(keywordsObj);
+    calculateRank(keywordsObj);
+    setLoading(false);
+  }, [keywordsObj]);
   
 
   if (!category) return null;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setKeyword, setActivePage, setIsKeywordsVisible, setScrollPage } from '../modules/data';
+import { setKeyword } from '../modules/data';
+import { setActivePage, setScrollPage, setIsKeywordsVisible } from '../modules/page';
 import TotalAnalysis from '../components/TotalAnalysis/TotalAnalysis';
 import Categories from "../components/Categories/Categories";
 import Keywords from "../components/Keywords/Keywords";
@@ -9,7 +10,8 @@ import Review from '../components/Review/Review';
 import ScrollTop from '../components/common/ScrollTop';
 
 const Main = () => {
-  const { category, keyword, active_page, is_keywords_visible, scroll_page } = useSelector(state => state.data);
+  const { category, keyword } = useSelector(state => state.data);
+  const { active_page, is_keywords_visible, scroll_page } = useSelector(state => state.page);
   const [scrollY, setScrollY] = useState(0);
   const [categoriesOffset, setCategoriesOffset] = useState(-1);
   const [totalAnalysisOffset, setTotalAnalysisOffset] = useState(-1);

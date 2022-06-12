@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActivePage } from '../../modules/data';
+import { setActivePage } from '../../modules/page';
 
 const SideBarContainer = styled.div`
   @media screen and (max-width: 1480px) {
@@ -50,7 +50,9 @@ const Contents = styled.div`
 
 
 const SideBar = () => {
-  const { category, keyword, is_keywords_visible, scroll_page, is_popup_visible } = useSelector(state => state.data);
+  const { category, keyword } = useSelector(state => state.data);
+  const { scroll_page, is_keywords_visible, is_popup_visible } = useSelector(state => state.page);
+
   const dispatch = useDispatch();
 
   if (is_popup_visible) return null;

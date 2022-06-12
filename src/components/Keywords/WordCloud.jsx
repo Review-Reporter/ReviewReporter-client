@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setKeyword, setActivePage } from '../../modules/data';
 import styled, { css } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setKeyword } from '../../modules/data';
+import { setActivePage } from '../../modules/page';
+
 
 const WordCloudContainer = styled.div`
   width: 100%;
