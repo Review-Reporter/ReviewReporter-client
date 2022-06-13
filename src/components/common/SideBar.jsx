@@ -74,14 +74,12 @@ const Title = styled.h3`
 const ContentsContainer = styled.div``;
 
 const Contents = styled.div`
+  ${({ theme }) => theme.common.buttonStyle };
+  
   color: darkgray;
   padding: 0 0.7rem;
   margin-bottom: 0.4rem;
   font-size: 0.95rem;
-  cursor: pointer;
-  &:hover { opacity: 0.8 };
-  &:active { opacity: 0.7 };
-
   transition: 0.2s ease-out;
 
   ${ props => {

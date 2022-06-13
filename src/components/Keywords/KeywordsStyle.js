@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
   flex-direction: column;
   max-width: 1080px;
   min-height: 100vh;

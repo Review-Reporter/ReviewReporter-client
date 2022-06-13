@@ -94,10 +94,8 @@ const WordCloudContainer = styled.div`
 `;
 
 const WordBox = styled.div`
+  ${({ theme }) => theme.common.flexCenter };
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 3em;
   max-width: 180px;
   text-align: center;
@@ -115,25 +113,20 @@ const WordBox = styled.div`
 `;
 
 const Word = styled.div`
+  ${({ theme }) => theme.common.buttonStyle };
+
   display: inline-block;
   font-weight: bold;
   width: 100%;
   font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
-  color: ${props => props.theme[props.color]};
-
-  
-  cursor: pointer;
-  &:hover { 
-    opacity: 0.8;
-    transform: scale(1.05);
-  };
-  &:active { opacity: 0.7 };
+  &:hover { transform: scale(1.05); };
 
   ${props => {
     let value = 0.5 + parseFloat(props.value)*2 + "em";
 
     return css`
       font-size: ${value};
+      color: ${props.theme[props.color]};
     `
   }};
 `;

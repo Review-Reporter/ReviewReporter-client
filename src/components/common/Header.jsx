@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/page';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Header = () => {
   const [hide, setHide] = useState(false);
@@ -69,20 +69,22 @@ const HeaderArea = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  border-bottom: 1px solid ${props => 
-    props.theme.border_color
-  };
-  
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  position: fixed;
-  z-index: 10;
-  transition: 0.3s ease;
+  ${({ theme }) => {
+    return css`
+      border-bottom: 1px solid ${ theme.border_color };
 
-  &.hide {
-    transform: translateY(-4rem);
-  }
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: fixed;
+      z-index: 10;
+      transition: 0.3s ease;
+
+      &.hide {
+        transform: translateY(-4rem);
+      }
+    `
+  }}
 `;
 
 const HeaderContainer = styled.div`
@@ -96,21 +98,32 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: ${props => props.theme.fonts.logo};
-  font-size: 1.7rem;
-  padding-top: 0.45rem;
-  cursor: pointer;
+  ${({ theme }) => {
+    return css`
+      font-family: ${ theme.fonts.logo };
+      font-size: 1.7rem;
+      padding-top: 0.45rem;
+      cursor: pointer;
+    `
+  }}
 `;
 
 const Categories = styled.div`
-  font-family: ${props => props.theme.fonts.menu};
-  color: lightgray;
-  cursor: pointer;
-  &:hover { opacity: 0.8; };
+  ${({ theme }) => {
+    return css`
+      ${ theme.common.buttonStyle };
+      font-family: ${ theme.fonts.menu };
+      color: lightgray;
+    `
+  }}
 `;
 
 const Color = styled.span`
-  color: ${props => props.theme.palette.yellow};
+ ${({ theme }) => {
+  return css`
+    color: ${ theme.palette.yellow };
+  `
+ }};
 `;
 
 export default Header;

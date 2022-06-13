@@ -39,9 +39,7 @@ const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
 };
 
 const Background = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
   position: fixed;
   top: 0;
   left: 0;
@@ -52,9 +50,7 @@ const Background = styled.div`
 `;
 
 const PopUpContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
   position: relative;
   width: 30rem;
   min-height: 10rem;
@@ -82,9 +78,7 @@ const CloseIcon = styled(IoCloseOutline)`
   color: #666666;
 
   cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
+  &:hover { opacity: 0.7; }
 
   ${props => {
     if (!props.is_graph) return;

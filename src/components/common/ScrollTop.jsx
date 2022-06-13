@@ -6,7 +6,7 @@ const ScrollTop = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
+
   return (
     <Button
       onClick={scrollToTop}
@@ -17,20 +17,17 @@ const ScrollTop = () => {
 };
 
 const Button = styled.div`
+  ${({ theme }) => theme.common.buttonStyle };
+  ${({ theme }) => theme.common.flexCenter };
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  justify-content: center;
-  align-items: center;
   background: white;
   opacity: 0.5;
   width: 3rem;
   height: 3rem;
-  display: flex;
   border-radius: 50%;
-  cursor: pointer;
 
-  &:hover { opacity: 0.7 };
   &:active { opacity: 0.4 };
 `;
 

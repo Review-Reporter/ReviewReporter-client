@@ -16,11 +16,9 @@ const spin = keyframes`
 `;
 
 const Background = styled.div`
+  ${({ theme }) => theme.common.flexCenter };
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Spinner = styled.div`

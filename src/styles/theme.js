@@ -18,5 +18,17 @@ export const theme = {
     category: `'Abril Fatface', cursive`,
     base: `SpoqaHanSansNeo-Regular`,
     title: `NanumBarunGothic`
+  },
+  common: {
+    flexCenter: `
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `,
+    buttonStyle: `
+      cursor: pointer;
+      &:hover { opacity: 0.8; };
+      &:active { opacity: 0.7 };
+    `
   }
 }

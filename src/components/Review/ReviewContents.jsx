@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Fold from './Fold';
 import ReviewText from './ReviewText';
 
@@ -41,8 +41,12 @@ const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, u
 };
 
 const ReviewContentsContainer = styled.div`
-  border-bottom: 1px solid ${props => props.theme.border_color};
-  padding: 1.2rem 1rem;
+  ${({ theme }) => {
+    return css`
+      border-bottom: 1px solid ${props => props.theme.border_color};
+      padding: 1.2rem 1rem;
+    `
+  }}
 `;
 
 const ReviewLink = styled.a`

@@ -67,22 +67,24 @@ const PaginationContainer = styled.div`
 `;
 
 const Button = styled.div`
-  text-align: center;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2.2;
-  font-size: 1rem;
-  padding-right: 1px;
-  font-family: ${ props => props.theme.fonts.title };
-  cursor: pointer;
-
-  &:hover{ opacity: 0.8 };
-  &:active{ opacity: 0.7 };
+  ${({ theme }) => {
+    return css`
+      ${ theme.common.buttonStyle };
+      
+      text-align: center;
+      width: 2rem;
+      height: 2rem;
+      line-height: 2.2;
+      font-size: 1rem;
+      padding-right: 1px;
+      font-family: ${ theme.fonts.title };
+    `
+  }};
 
   ${props =>
     props.color &&
     css`
-      background: ${props.theme.primary_color};
+      background: ${ props.theme.primary_color };
     `
   }
 `;

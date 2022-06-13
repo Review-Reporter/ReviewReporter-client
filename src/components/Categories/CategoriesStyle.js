@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
+  
   flex-direction: column;
   max-width: 1080px;
   height: 100vh;
@@ -24,12 +23,8 @@ const Category = styled.div`
   cursor: pointer;
   position: relative;
 
-  :not(:hover) {
-    opacity: 0.85;
-  }
-  &:hover {
-    transform: scale(1.02);
-  }
+  :not(:hover) { opacity: 0.85; }
+  &:hover { transform: scale(1.02); }
 `;
 
 const Image = styled.img.attrs(() => ({

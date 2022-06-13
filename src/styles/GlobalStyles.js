@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyles = createGlobalStyle`
@@ -47,25 +47,29 @@ export const GlobalStyles = createGlobalStyle`
     background: #242424;
   }
 
-  body {
-    height: 100vh;
-    box-sizing: border-box;
-    margin: 0 auto;
-    color: ${ props => props.theme.text_color };
-    font-size: 1.125rem;
-    font-family: ${ props => props.theme.fonts.base };
+  ${({ theme }) => {
+    return css`
+      body {
+        height: 100vh;
+        box-sizing: border-box;
+        margin: 0 auto;
+        color: ${ theme.text_color };
+        font-size: 1.125rem;
+        font-family: ${ theme.fonts.base };
 
-    @media screen and (max-width: 1023px) {
-      width: 100%;
-    }
+        @media screen and (max-width: 1023px) {
+          width: 100%;
+        }
 
-    @media screen and (max-width: 599px) {
-      /* add warning text */
-    }
-  }
+        @media screen and (max-width: 599px) {
+          /* add warning text */
+        }
+      }
 
-  h1, h2, h3, h4, h5 {
-    font-family: ${ props => props.theme.fonts.title };
-  }
+      h1, h2, h3, h4, h5 {
+        font-family: ${ theme.fonts.title };
+      }
+    `;
+  }}
 `;
 

@@ -18,9 +18,8 @@ const Info = ({ isVisible, setIsVisible, children }) => {
 
 
 const Background = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
+
   position: fixed;
   top: 0;
   left: 0;
@@ -31,9 +30,8 @@ const Background = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
+  
   position: relative;
   width: 30rem;
   height: 10rem;
@@ -43,14 +41,11 @@ const InfoContainer = styled.div`
 `;
 
 const CloseIcon = styled(IoCloseOutline)`
+  ${({ theme }) => theme.common.buttonStyle };
+
   position: absolute;
   right: 0.1rem;
   top: 0.2rem;
-
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
 `;
 
 const Text = styled.p`

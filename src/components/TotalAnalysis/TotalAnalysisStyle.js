@@ -1,11 +1,8 @@
 import styled, { css } from 'styled-components';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { IoCloseOutline } from 'react-icons/io5'
 
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
   flex-direction: column;
   max-width: 1080px;
   min-height: 100vh;
@@ -28,27 +25,24 @@ const Title = styled.h3`
   font-size: 1.5rem;
 `;
 
-const SubTitle = styled.span`
-  font-size: 1rem;
-  color: lightgray;
-`;
-
 const Category = styled.span`
   color: ${ props => props.theme.highlight_color };
   font-weight: bold;
 `;
 
 const InfoIcon = styled(AiOutlineInfoCircle)`
+  ${({ theme }) => theme.common.buttonStyle };
+
   color: darkgray;
   margin-left: 0.5rem;
-  cursor: pointer;
-
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
 `;
 
 const HighLight = styled.span`
-  color: ${props => props.theme.highlight_color};
+  ${({ theme }) => {
+    return css`
+      color: ${ theme.highlight_color };
+    `
+  }}
 `;
 
 const ContentsContainer = styled.div`
@@ -88,21 +82,24 @@ const Graph = styled.img.attrs(() => ({
 `;
 
 const Background = styled.div`
-  position: relative;
-  padding: 2rem;
-  background: ${props => props.theme.dark_bg_color};
-  width: 100%;
+  ${({ theme }) => {
+    return css`
+      position: relative;
+      padding: 2rem;
+      background: ${ theme.dark_bg_color };
+      width: 100%;
+    `
+  }};
 
   ${props =>
     props.graph &&
     css`
+      ${ props.theme.common.buttonStyle };
+
       width: 7.5em;
       max-width: 26rem;
       padding: 0;
       padding: 1rem;
-      cursor: pointer;
-      &:hover { opacity: 0.8; };
-      &:active { opacity: 0.7 };
     `
   };
 `;
@@ -113,7 +110,11 @@ const AnalysisContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  color: ${props => props.theme.sub_text_color};
+  ${({ theme }) => {
+    return css`
+      color: ${ theme.sub_text_color };
+    `
+  }};
 `;
 
 const Text = styled.p`
@@ -127,13 +128,11 @@ const Text = styled.p`
 const ButtonWrapper = styled.div``;
 
 const Button = styled.div`
+  ${({ theme }) => theme.common.buttonStyle };
+
   color: lightgray;
   font-size: 1.3rem;
   text-decoration: underline;
-  cursor: pointer;
-
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
 `;
 
 const SummaryTitle = styled.div`

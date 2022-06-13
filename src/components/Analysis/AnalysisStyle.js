@@ -3,9 +3,8 @@ import { AiOutlineInfoCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.common.flexCenter };
+  
   flex-direction: column;
   max-width: 1080px;
   padding: 2rem;
@@ -28,16 +27,18 @@ const Title = styled.h3`
 `;
 
 const InfoIcon = styled(AiOutlineInfoCircle)`
+  ${({ theme }) => theme.common.buttonStyle };
+  
   color: lightgray;
   margin-left: 0.5rem;
-  cursor: pointer;
-
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
 `;
 
 const Keyword = styled.span`
-  color: ${props => props.theme.highlight_color};
+  ${({ theme }) => {
+    return css`
+      color: ${ theme.highlight_color };
+    `
+  }}
 `;
 
 const ContentsContainer = styled.div`
@@ -66,7 +67,6 @@ const Graph = styled.img.attrs(() => ({
   loading: 'lazy'
 }))`
   width: 100%;
-
 `;
 
 const ContentsTitle = styled.h3`
@@ -87,16 +87,15 @@ const Background = styled.div`
   background: ${props => props.theme.dark_bg_color};
   width: 100%;
 
-  ${props =>
+  ${(props) =>
     props.graph &&
     css`
+      ${ props.theme.common.buttonStyle };
+
       width: 7.5em;
       max-width: 26rem;
       padding: 0;
       padding: 1rem;
-      cursor: pointer;
-      &:hover { opacity: 0.8; };
-      &:active { opacity: 0.7 };
     `
   };
 `;
@@ -120,23 +119,21 @@ const HighLight = styled.span`
 `;
 
 const CloseIcon = styled(IoCloseOutline)`
+  ${({ theme }) => theme.common.buttonStyle };
+
   color: darkgray;
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  cursor: pointer;
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
 `;
 
 const OpenIcon = styled(AiOutlinePlusCircle)`
+  ${({ theme }) => theme.common.buttonStyle };
+
   color: darkgray;
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  cursor: pointer;
-  &:hover { opacity: 0.8; };
-  &:active { opacity: 0.7 };
 `;
 
 const AnalysisContainer = styled.div`
