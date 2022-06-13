@@ -2,6 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiArrowUp } from 'react-icons/fi';
 
+const ScrollTop = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+  return (
+    <Button
+      onClick={scrollToTop}
+    >
+      <Icon size="32"/>
+    </Button>
+  )
+};
+
 const Button = styled.div`
   position: fixed;
   bottom: 1.5rem;
@@ -23,19 +37,5 @@ const Button = styled.div`
 const Icon = styled(FiArrowUp)`
   color: gray;
 `;
-
-const ScrollTop = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  
-  return (
-    <Button
-      onClick={scrollToTop}
-    >
-      <Icon size="32"/>
-    </Button>
-  )
-};
 
 export default ScrollTop;

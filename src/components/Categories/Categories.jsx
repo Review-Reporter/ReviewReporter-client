@@ -1,15 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { style } from './CategoriesStyle';
 import { useDispatch } from 'react-redux';
 import { setCategory } from '../../modules/data';
 import { setActivePage } from '../../modules/page';
 import toteBag from '../../assets/images/category/Tote Bag.png';
 import backpack from '../../assets/images/category/Backpack.png';
-import {
-  PageContainer,
-  CategoryContainer,
-  Category,
-  Image,
-} from '../../styles/Categories';
 
 
 const Categories = ({ setPageOffset }) => {
@@ -61,5 +56,12 @@ const Categories = ({ setPageOffset }) => {
     </PageContainer>
   )
 }
+
+const {
+  PageContainer,
+  CategoryContainer,
+  Category,
+  Image
+} = style;
 
 export default Categories;

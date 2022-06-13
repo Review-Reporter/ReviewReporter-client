@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { AiOutlineInfoCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { IoCloseOutline } from 'react-icons/io5';
 
-export const PageContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,19 +15,19 @@ export const PageContainer = styled.div`
   margin-top: 6rem;
 `;
 
-export const TitleContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 2rem;
 `;
 
-export const Title = styled.h3`
+const Title = styled.h3`
   font-weight: bold;
   font-size: 1.5rem;
 `;
 
-export const InfoIcon = styled(AiOutlineInfoCircle)`
+const InfoIcon = styled(AiOutlineInfoCircle)`
   color: lightgray;
   margin-left: 0.5rem;
   cursor: pointer;
@@ -36,11 +36,11 @@ export const InfoIcon = styled(AiOutlineInfoCircle)`
   &:active { opacity: 0.7 };
 `;
 
-export const Keyword = styled.span`
+const Keyword = styled.span`
   color: ${props => props.theme.highlight_color};
 `;
 
-export const ContentsContainer = styled.div`
+const ContentsContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-flow: wrap;
@@ -48,7 +48,7 @@ export const ContentsContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const GraphTitle = styled.h3`
+const GraphTitle = styled.h3`
   font-size: 1.25rem;
   color: lightgray;
   border-bottom: 1px solid gray;
@@ -57,28 +57,31 @@ export const GraphTitle = styled.h3`
   padding-left: 0.5rem;
 `;
 
-export const GraphContainer = styled.div`
+const GraphContainer = styled.div`
   padding: 1rem;
   font-size: 5vw;
 `;
 
-export const Graph = styled.img`
+const Graph = styled.img.attrs(() => ({
+  loading: 'lazy'
+}))`
   width: 100%;
+
 `;
 
-export const ContentsTitle = styled.h3`
+const ContentsTitle = styled.h3`
   font-size: 1.4rem;
   margin-bottom: 0.7rem;
   padding-left: 0.5rem;
   font-weight: bold;
 `;
 
-export const SubTitle = styled.span`
+const SubTitle = styled.span`
   font-size: 1rem;
   color: lightgray;
 `;
 
-export const Background = styled.div`
+const Background = styled.div`
   position: relative;
   padding: 2rem;
   background: ${props => props.theme.dark_bg_color};
@@ -98,27 +101,25 @@ export const Background = styled.div`
   };
 `;
 
-export const Text = styled.p`
+const Text = styled.p`
   color: ${ props => props.theme.sub_text_color };
   font-size: 1.1rem;
   line-height: 1.3;
 `;
 
-export const List = styled.li`
+const List = styled.li``;
 
-`;
-
-export const Value = styled.p`
+const Value = styled.p`
   font-size: 1.2rem;
   margin-bottom: 1rem;
   line-height: 1.5;
 `;
 
-export const HighLight = styled.span`
+const HighLight = styled.span`
   color: ${props => props.theme.highlight_color};
 `;
 
-export const CloseIcon = styled(IoCloseOutline)`
+const CloseIcon = styled(IoCloseOutline)`
   color: darkgray;
   position: absolute;
   top: 0.5rem;
@@ -128,7 +129,7 @@ export const CloseIcon = styled(IoCloseOutline)`
   &:active { opacity: 0.7 };
 `;
 
-export const OpenIcon = styled(AiOutlinePlusCircle)`
+const OpenIcon = styled(AiOutlinePlusCircle)`
   color: darkgray;
   position: absolute;
   top: 0.5rem;
@@ -138,7 +139,29 @@ export const OpenIcon = styled(AiOutlinePlusCircle)`
   &:active { opacity: 0.7 };
 `;
 
-export const AnalysisContainer = styled.div`
+const AnalysisContainer = styled.div`
   width: 100%;
   padding: 1rem;
 `;
+
+export const style = {
+  PageContainer,
+  TitleContainer,
+  Title,
+  InfoIcon,
+  Keyword,
+  ContentsContainer,
+  GraphTitle,
+  GraphContainer,
+  Graph,
+  ContentsTitle,
+  SubTitle,
+  Background,
+  Text,
+  List,
+  Value,
+  HighLight,
+  CloseIcon,
+  OpenIcon,
+  AnalysisContainer
+};

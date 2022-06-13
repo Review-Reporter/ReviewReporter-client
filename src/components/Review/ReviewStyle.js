@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,12 +12,12 @@ export const PageContainer = styled.div`
   padding-bottom: 5rem;
 `;
 
-export const ContentsContainer = styled.div`
+const ContentsContainer = styled.div`
   width: 100%;
   padding: 1rem;
 `;
 
-export const PageTitle = styled.h3`
+const PageTitle = styled.h3`
   width: 100%;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
@@ -25,13 +25,13 @@ export const PageTitle = styled.h3`
   font-weight: bold;
 `;
 
-export const Background = styled.div`
+const Background = styled.div`
   width: 100%;
   padding: 2rem;
   background: ${props => props.theme.dark_bg_color};
 `;
 
-export const TagContainer = styled.div`
+const TagContainer = styled.div`
   display: flex;
   flex-flow: wrap;
   width: 100%;
@@ -40,8 +40,16 @@ export const TagContainer = styled.div`
   align-items: center;
 `;
 
-export const ReviewContainer = styled.div`
+const ReviewContainer = styled.div`
   padding: 1rem 0;
   color: ${props => props.theme.sub_text_color};
 `;
 
+export const style = {
+  PageContainer,
+  Background,
+  ContentsContainer,
+  PageTitle,
+  TagContainer,
+  ReviewContainer
+};

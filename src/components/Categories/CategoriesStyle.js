@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,12 +12,12 @@ export const PageContainer = styled.div`
   font-weight: 500;
 `;
 
-export const CategoryContainer = styled.div`
+const CategoryContainer = styled.div`
   margin-top: 3rem;
   display: flex;
 `;
 
-export const Category = styled.div`
+const Category = styled.div`
   display: inline-block;
   max-width: 380px;
   margin: 2rem 1rem;
@@ -32,6 +32,15 @@ export const Category = styled.div`
   }
 `;
 
-export const Image = styled.img`
+const Image = styled.img.attrs(() => ({
+  loading: 'lazy'
+}))`
   width: 100%;
 `;
+
+export const style = {
+  PageContainer,
+  CategoryContainer,
+  Category,
+  Image
+};

@@ -4,6 +4,40 @@ import { useDispatch } from 'react-redux';
 import { setIsPopUpVisible } from '../../modules/page';
 import { IoCloseOutline } from 'react-icons/io5'
 
+
+const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
+  const dispatch = useDispatch();
+
+  const handleOpenPopUp = () => {
+    dispatch(setIsPopUpVisible(true));
+  }
+
+  const handleClosePopUp = () => {
+    setIsVisible("");
+    dispatch(setIsPopUpVisible(false));
+  }
+
+  useEffect(() => {
+    if (isVisible) handleOpenPopUp();
+  }, [isVisible]);
+  
+  if (!isVisible) return null;
+  return (
+    <Background>
+      <PopUpContainer
+        is_graph={graph}
+      >
+        <CloseIcon size="30"
+          title={graph ? "클릭 시 이미지가 축소됩니다." : ""}
+          is_graph={graph}
+          onClick={handleClosePopUp}
+        />
+        <Text>{children}</Text>
+      </PopUpContainer>
+    </Background>
+  )
+};
+
 const Background = styled.div`
   display: flex;
   justify-content: center;
@@ -69,38 +103,5 @@ const Text = styled.div`
   letter-spacing: 1.5;
   width: 100%;
 `;
-
-const PopUp = ({ isVisible, setIsVisible, graph, children }) => {
-  const dispatch = useDispatch();
-
-  const handleOpenPopUp = () => {
-    dispatch(setIsPopUpVisible(true));
-  }
-
-  const handleClosePopUp = () => {
-    setIsVisible("");
-    dispatch(setIsPopUpVisible(false));
-  }
-
-  useEffect(() => {
-    if (isVisible) handleOpenPopUp();
-  }, [isVisible]);
-  
-  if (!isVisible) return null;
-  return (
-    <Background>
-      <PopUpContainer
-        is_graph={graph}
-      >
-        <CloseIcon size="30"
-          title={graph ? "클릭 시 이미지가 축소됩니다." : ""}
-          is_graph={graph}
-          onClick={handleClosePopUp}
-        />
-        <Text>{children}</Text>
-      </PopUpContainer>
-    </Background>
-  )
-};
 
 export default PopUp;

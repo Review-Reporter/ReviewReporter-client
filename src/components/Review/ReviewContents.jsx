@@ -3,25 +3,6 @@ import styled from 'styled-components';
 import Fold from './Fold';
 import ReviewText from './ReviewText';
 
-const ReviewContentsContainer = styled.div`
-  border-bottom: 1px solid ${props => props.theme.border_color};
-  padding: 1.2rem 1rem;
-`;
-
-const ReviewLink = styled.a`
-  text-decoration: none;
-  color: white;
-`;
-
-const Meta = styled.div`
-  display: inline-block;
-  font-size: 0.75rem;
-  color: gray;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-
 
 const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, url, currentPage, reviewKeyword }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,5 +39,23 @@ const ReviewContents = ({ keyword, vendor_name , date, product_name, contents, u
     </ReviewContentsContainer>
   )
 };
+
+const ReviewContentsContainer = styled.div`
+  border-bottom: 1px solid ${props => props.theme.border_color};
+  padding: 1.2rem 1rem;
+`;
+
+const ReviewLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
+const Meta = styled.div`
+  display: inline-block;
+  font-size: 0.75rem;
+  color: gray;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+`;
 
 export default ReviewContents;

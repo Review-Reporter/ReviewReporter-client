@@ -4,6 +4,25 @@ import { useDispatch } from 'react-redux';
 import { setKeyword } from '../../modules/data';
 import { setActivePage } from '../../modules/page';
 
+
+const Rank = ({ rank, keyword }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <RankContainer
+      onClick={() => {
+        dispatch(setKeyword(keyword));
+        dispatch(setActivePage('analysis'));
+      }}
+    >
+      <NumBackground><Num>{rank}</Num></NumBackground>
+      <Keyword>
+        <RectBackground>{keyword}</RectBackground><RoundBackground />
+      </Keyword>
+    </RankContainer>
+  )
+};
+
 const RankContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -62,23 +81,5 @@ const RoundBackground = styled.div`
   border-radius: 0 50% 50% 0;
   z-index: 0;
 `;
-
-const Rank = ({ rank, keyword }) => {
-  const dispatch = useDispatch();
-
-  return (
-    <RankContainer
-      onClick={() => {
-        dispatch(setKeyword(keyword));
-        dispatch(setActivePage('analysis'));
-      }}
-    >
-      <NumBackground><Num>{rank}</Num></NumBackground>
-      <Keyword>
-        <RectBackground>{keyword}</RectBackground><RoundBackground />
-      </Keyword>
-    </RankContainer>
-  )
-};
 
 export default Rank;

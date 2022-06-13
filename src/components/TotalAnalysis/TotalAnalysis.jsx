@@ -1,4 +1,5 @@
 import React, { useState, forwardRef, useEffect } from 'react';
+import { style } from './TotalAnalysisStyle';
 import Loading from '../common/Loading';
 import PopUp from '../common/PopUp';
 import DataAPI from '../../lib/api/DataAPI';
@@ -6,26 +7,6 @@ import AnalysisData from '../../assets/data/total_analysis_data.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { getKeywordsObj } from '../../modules/data';
 import { setActivePage } from '../../modules/page';
-import {
-  PageContainer,
-  TitleContainer,
-  Title,
-  Category,
-  InfoIcon,
-  ContentsContainer,
-  ContentsTitle,
-  GraphContainer,
-  Graph,
-  Background,
-  AnalysisContainer,
-  TextContainer,
-  Text,
-  HighLight,
-  SummaryTitle,
-  ButtonWrapper,
-  Button,
-  GraphTitle
-} from '../../styles/TotalAnalysis';
 
 const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
   const [loading, setLoading] = useState(true);
@@ -214,5 +195,26 @@ const TotalAnalysis = ({ category, setIsClicked, setPageOffset }, ref) => {
     </PageContainer>
   )
 };
+
+const {
+  PageContainer,
+  TitleContainer,
+  Title,
+  Category,
+  InfoIcon,
+  ContentsContainer,
+  ContentsTitle,
+  GraphContainer,
+  Graph,
+  Background,
+  AnalysisContainer,
+  TextContainer,
+  Text,
+  HighLight,
+  SummaryTitle,
+  ButtonWrapper,
+  Button,
+  GraphTitle
+} = style;
 
 export default forwardRef(TotalAnalysis);

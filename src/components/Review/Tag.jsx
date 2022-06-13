@@ -1,6 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const Tag = ({ keyword, setReviewKeyword, children }) => {
+  return (
+    <TagWrapper
+      onClick={() => setReviewKeyword(children)}
+      color={keyword === children ? "true" : undefined}
+    >{children}</TagWrapper>
+  )
+};
+
 const TagWrapper = styled.div`
   height: 2rem;
   border: 2px solid gray;
@@ -22,14 +31,5 @@ const TagWrapper = styled.div`
   &:hover {opacity: 0.8};
   &:active {opacity: 0.7};
 `;
-
-const Tag = ({ keyword, setReviewKeyword, children }) => {
-  return (
-    <TagWrapper
-      onClick={() => setReviewKeyword(children)}
-      color={keyword === children ? "true" : undefined}
-    >{children}</TagWrapper>
-  )
-};
 
 export default Tag;

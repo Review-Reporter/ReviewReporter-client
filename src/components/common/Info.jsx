@@ -2,6 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5'
 
+const Info = ({ isVisible, setIsVisible, children }) => {
+  if (!isVisible) return null;
+  return (
+    <Background>
+      <InfoContainer>
+        <CloseIcon size="30" color="#666666"
+          onClick={()=>setIsVisible(false)}
+        />
+        <Text>{children}</Text>
+      </InfoContainer>
+    </Background>
+  )
+};
+
+
 const Background = styled.div`
   display: flex;
   justify-content: center;
@@ -45,19 +60,5 @@ const Text = styled.p`
   letter-spacing: 1.5;
   width: 100%;
 `;
-
-const Info = ({ isVisible, setIsVisible, children }) => {
-  if (!isVisible) return null;
-  return (
-    <Background>
-      <InfoContainer>
-        <CloseIcon size="30" color="#666666"
-          onClick={()=>setIsVisible(false)}
-        />
-        <Text>{children}</Text>
-      </InfoContainer>
-    </Background>
-  )
-};
 
 export default Info;

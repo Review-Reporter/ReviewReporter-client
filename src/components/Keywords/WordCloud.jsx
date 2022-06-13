@@ -5,72 +5,6 @@ import { setKeyword } from '../../modules/data';
 import { setActivePage } from '../../modules/page';
 
 
-const WordCloudContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const WordBox = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3em;
-  max-width: 180px;
-  text-align: center;
-  height: 66px;
-
-  ${props => {
-    let topValue = props.top/3 + "em";
-    let leftValue = props.left/3 + "em";
-
-    return css`
-      top: ${topValue};
-      left: ${leftValue};
-    `
-  }};
-`;
-
-const Word = styled.div`
-  display: inline-block;
-  font-weight: bold;
-  width: 100%;
-  font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
-  color: ${props => props.theme[props.color]};
-
-  
-  cursor: pointer;
-  &:hover { 
-    opacity: 0.8;
-    transform: scale(1.05);
-  };
-  &:active { opacity: 0.7 };
-
-  ${props => {
-    let value = 0.5 + parseFloat(props.value)*2 + "em";
-
-    return css`
-      font-size: ${value};
-    `
-  }};
-`;
-
-const ImgArea = styled.div`
-  width: 30%;
-`;
-
-const DataContainer = styled.div`
-  position: relative;
-  width: 32%;
-  margin-top: -4rem;
-  max-width: 20rem;
-
-  @media screen and (min-width: 1000px) {
-    font-size: 3.1rem;
-  }
-`;
-
 const position = {
   top: {
     0: [0, 1, 7, 10, 13],
@@ -152,5 +86,71 @@ const WordCloud = ({ data }) => {
     </WordCloudContainer>
   )
 };
+
+const WordCloudContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const WordBox = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  max-width: 180px;
+  text-align: center;
+  height: 66px;
+
+  ${props => {
+    let topValue = props.top/3 + "em";
+    let leftValue = props.left/3 + "em";
+
+    return css`
+      top: ${topValue};
+      left: ${leftValue};
+    `
+  }};
+`;
+
+const Word = styled.div`
+  display: inline-block;
+  font-weight: bold;
+  width: 100%;
+  font-size: 0.7em; // 20px ~ 100px , 20px ~ 50px
+  color: ${props => props.theme[props.color]};
+
+  
+  cursor: pointer;
+  &:hover { 
+    opacity: 0.8;
+    transform: scale(1.05);
+  };
+  &:active { opacity: 0.7 };
+
+  ${props => {
+    let value = 0.5 + parseFloat(props.value)*2 + "em";
+
+    return css`
+      font-size: ${value};
+    `
+  }};
+`;
+
+const ImgArea = styled.div`
+  width: 30%;
+`;
+
+const DataContainer = styled.div`
+  position: relative;
+  width: 32%;
+  margin-top: -4rem;
+  max-width: 20rem;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 3.1rem;
+  }
+`;
 
 export default WordCloud;

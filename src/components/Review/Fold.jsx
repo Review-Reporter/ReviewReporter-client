@@ -2,6 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
+const Fold = ({ isVisible, isOpen, setIsOpen }) => {
+  if (!isVisible) return null;
+  return (
+    <FoldContainer
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      <FoldText>{isOpen ? "접기" : "펼치기"}</FoldText>
+      {isOpen ? <ArrowUp /> : <ArrowDown />}
+    </FoldContainer>
+  )
+};
+
 export const FoldContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -29,18 +41,5 @@ export const ArrowUp = styled(BsChevronUp)`
   color: gray;
   padding-bottom: 2px;
 `;
-
-
-const Fold = ({ isVisible, isOpen, setIsOpen }) => {
-  if (!isVisible) return null;
-  return (
-    <FoldContainer
-      onClick={() => setIsOpen(!isOpen)}
-    >
-      <FoldText>{isOpen ? "접기" : "펼치기"}</FoldText>
-      {isOpen ? <ArrowUp /> : <ArrowDown />}
-    </FoldContainer>
-  )
-};
 
 export default Fold;

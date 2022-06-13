@@ -1,26 +1,8 @@
 import React, { useState, useEffect, forwardRef } from 'react';
+import { style } from './AnalysisStyle';
 import Loading from '../common/Loading';
 import DataAPI from '../../lib/api/DataAPI';
 import PopUp from '../common/PopUp';
-import {
-  PageContainer,
-  Keyword,
-  TitleContainer,
-  Title,
-  InfoIcon,
-  ContentsContainer,
-  GraphTitle,
-  GraphContainer,
-  Graph,
-  ContentsTitle,
-  Text,
-  List,
-  Value,
-  HighLight,
-  Background,
-  AnalysisContainer
-} from '../../styles/Analysis';
-
 
 const Analysis = ({ category, keyword, setPageOffset }, ref) => {
   const [loading, setLoading] = useState(true);
@@ -185,5 +167,24 @@ const Analysis = ({ category, keyword, setPageOffset }, ref) => {
     </PageContainer>
   )
 };
+
+const {
+  PageContainer,
+  Keyword,
+  TitleContainer,
+  Title,
+  InfoIcon,
+  ContentsContainer,
+  GraphTitle,
+  GraphContainer,
+  Graph,
+  ContentsTitle,
+  Text,
+  List,
+  Value,
+  HighLight,
+  Background,
+  AnalysisContainer
+} = style;
 
 export default forwardRef(Analysis);

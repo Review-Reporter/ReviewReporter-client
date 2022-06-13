@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react';
+import { style } from './ReviewStyle';
 import { useSelector } from 'react-redux';
 import Loading from '../common/Loading';
 import DataAPI from '../../lib/api/DataAPI';
 import ReviewContents from './ReviewContents';
 import Tag from './Tag';
 import Pagination from './Pagination';
-import {
-  PageContainer,
-  Background,
-  ContentsContainer,
-  PageTitle,
-  TagContainer,
-  ReviewContainer
-} from '../../styles/Review';
 
 const Review = ({ category, keyword, setPageOffset }, ref) => {
   const [loading, setLoading] = useState(true);
@@ -132,5 +125,14 @@ const Review = ({ category, keyword, setPageOffset }, ref) => {
     </PageContainer>
   );
 };
+
+const {
+  PageContainer,
+  Background,
+  ContentsContainer,
+  PageTitle,
+  TagContainer,
+  ReviewContainer
+} = style;
 
 export default forwardRef(Review);

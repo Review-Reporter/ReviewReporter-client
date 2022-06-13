@@ -1,23 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
-const Text = styled.div`
-  ${props =>
-    !props.isOpen &&
-    css`
-      display: -webkit-box; 
-      word-wrap: break-word; 
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; 
-      overflow: hidden; 
-      text-overflow: ellipsis;
-      height: 56px;
-    `
-  }
-  
-  line-height: 1.2;
-  font-size: 1rem;
-`;
 
 const ReviewText = ({ isOpen, setIsFoldVisible, children, currentPage, reviewKeyword }) => {
   const text = useRef(null);
@@ -44,5 +27,23 @@ const ReviewText = ({ isOpen, setIsFoldVisible, children, currentPage, reviewKey
     >{children}</Text>
   )
 };
+
+const Text = styled.div`
+  ${props =>
+    !props.isOpen &&
+    css`
+      display: -webkit-box; 
+      word-wrap: break-word; 
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; 
+      overflow: hidden; 
+      text-overflow: ellipsis;
+      height: 56px;
+    `
+  }
+  
+  line-height: 1.2;
+  font-size: 1rem;
+`;
 
 export default ReviewText;

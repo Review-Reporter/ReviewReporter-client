@@ -3,51 +3,6 @@ import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActivePage } from '../../modules/page';
 
-const SideBarContainer = styled.div`
-  @media screen and (max-width: 1480px) {
-    display: none;
-  }
-
-  color: #e4e4e4;
-  position: fixed;
-  top: 10rem;
-  left: 2.5rem;
-  width: 10rem;
-`;
-
-const Title = styled.h3`
-  font-weight: bold;
-  padding: 0 0.5rem;
-  font-size: 1.3rem;
-  font-family: ${ props => props.theme.fonts.menu };
-  border-bottom: 1px solid gray;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
-
-const ContentsContainer = styled.div``;
-
-const Contents = styled.div`
-  color: darkgray;
-  padding: 0 0.7rem;
-  margin-bottom: 0.4rem;
-  font-size: 0.95rem;
-  cursor: pointer;
-  &:hover { opacity: 0.8 };
-  &:active { opacity: 0.7 };
-
-  transition: 0.2s ease-out;
-
-  ${ props => {
-     if (props.isSelected) 
-      return css`
-        font-size: 1.1rem;
-        padding: 0;
-        color: white;
-      `
-  }};
-`;
-
 
 const SideBar = () => {
   const { category, keyword } = useSelector(state => state.data);
@@ -93,5 +48,50 @@ const SideBar = () => {
     </SideBarContainer>
   )
 };
+
+const SideBarContainer = styled.div`
+  @media screen and (max-width: 1480px) {
+    display: none;
+  }
+
+  color: #e4e4e4;
+  position: fixed;
+  top: 10rem;
+  left: 2.5rem;
+  width: 10rem;
+`;
+
+const Title = styled.h3`
+  font-weight: bold;
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+  font-family: ${ props => props.theme.fonts.menu };
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+`;
+
+const ContentsContainer = styled.div``;
+
+const Contents = styled.div`
+  color: darkgray;
+  padding: 0 0.7rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  &:hover { opacity: 0.8 };
+  &:active { opacity: 0.7 };
+
+  transition: 0.2s ease-out;
+
+  ${ props => {
+     if (props.isSelected) 
+      return css`
+        font-size: 1.1rem;
+        padding: 0;
+        color: white;
+      `
+  }};
+`;
 
 export default SideBar;

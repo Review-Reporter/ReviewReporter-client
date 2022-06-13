@@ -1,23 +1,11 @@
 import React, { forwardRef, useEffect, useState } from 'react';
+import { style } from './KeywordsStyle';
 import Loading from '../common/Loading';
-import DataAPI from '../../lib/api/DataAPI';
 import { useSelector } from 'react-redux';
 import toteBag from '../../assets/images/product/toteBag.png';
 import backpack from '../../assets/images/product/backpack.png';
 import WordCloud from './WordCloud';
 import Rank from './Rank';
-import {
-  PageContainer,
-  Title,
-  ContentsContainer,
-  Category,
-  ImageWrapper,
-  Image,
-  KeywordContainer,
-  WordCloudContainer,
-  ContentsTitle,
-  RankContainer,
-} from '../../styles/Keywords';
 
 
 const Keywords = ({ category, setPageOffset }, ref) => {
@@ -113,5 +101,19 @@ const Keywords = ({ category, setPageOffset }, ref) => {
     </PageContainer>
   )
 };
+
+
+const {
+  PageContainer,
+  Title,
+  ContentsContainer,
+  Category,
+  ImageWrapper,
+  Image,
+  KeywordContainer,
+  WordCloudContainer,
+  ContentsTitle,
+  RankContainer
+} = style;
 
 export default forwardRef(Keywords);

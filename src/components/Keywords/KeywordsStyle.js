@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const PageContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,21 +12,21 @@ export const PageContainer = styled.div`
   font-weight: 500;
 `;
 
-export const Title = styled.h3`
+const Title = styled.h3`
   font-weight: bold;
   font-size: 1.5rem;
   width: 100%;
   margin-bottom: 1rem;
 `;
 
-export const ContentsContainer = styled.div`
+const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 5vw;
   position: relative;
 `;
 
-export const Category = styled.div`
+const Category = styled.div`
   ${({theme}) => {
     return css`
       font-family: ${theme.fonts.category};
@@ -42,26 +42,28 @@ export const Category = styled.div`
   }
 `;
 
-export const ImageWrapper = styled.div`
+const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: -1.5em;
 `;
 
-export const Image = styled.img`
+const Image = styled.img.attrs(() => ({
+  loading: 'lazy'
+}))`
   margin-top: 0.4em;
   width: 22%;
 `;
 
-export const KeywordContainer = styled.div``;
+const KeywordContainer = styled.div``;
 
-export const WordCloudContainer = styled.div`
+const WordCloudContainer = styled.div`
   position: absolute;
   top: 1rem;
   width: 100%;
 `;
 
-export const ContentsTitle = styled.h3`
+const ContentsTitle = styled.h3`
   font-size: 1.4rem;
   width: 100%;
   text-align: center;
@@ -71,7 +73,7 @@ export const ContentsTitle = styled.h3`
   font-weight: bold;
 `;
 
-export const RankContainer = styled.div`
+const RankContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -80,5 +82,18 @@ export const RankContainer = styled.div`
   margin-top: 2rem;
   border-radius: 8px;
   padding: 1.5rem 0 0.5rem 0;
-  background: ${props => props.theme.dark_bg_color}
+  background: ${props => props.theme.dark_bg_color};
 `;
+
+export const style = {
+  PageContainer,
+  Title,
+  ContentsContainer,
+  Category,
+  ImageWrapper,
+  Image,
+  KeywordContainer,
+  WordCloudContainer,
+  ContentsTitle,
+  RankContainer
+};
